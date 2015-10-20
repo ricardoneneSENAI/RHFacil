@@ -123,6 +123,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         TelaVaga tv = new TelaVaga(this, true);
         
     }//GEN-LAST:event_jButton2ActionPerformed
+    
+                                          
 
     /**
      * @param args the command line arguments
