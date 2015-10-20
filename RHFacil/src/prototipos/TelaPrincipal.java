@@ -6,6 +6,8 @@
 
 package prototipos;
 
+import java.awt.event.ActionEvent;
+
 /**
  *
  * @author ricardo.nene
@@ -31,47 +33,67 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnEmpresa = new javax.swing.JButton();
+        btnVagas = new javax.swing.JButton();
+        btnCurriculo = new javax.swing.JButton();
+        btnCandidatos = new javax.swing.JButton();
+        btnEntrevista = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/1443593833_Shop.png"))); // NOI18N
-        jButton1.setText("Empresas");
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/vagas.png"))); // NOI18N
-        jButton2.setText("Vagas");
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnEmpresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/1443593833_Shop.png"))); // NOI18N
+        btnEmpresa.setText("Empresas");
+        btnEmpresa.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnEmpresa.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEmpresa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnEmpresaActionPerformed(evt);
             }
         });
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/entrevista.png"))); // NOI18N
-        jButton3.setText("Currículos");
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnVagas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/vagas.png"))); // NOI18N
+        btnVagas.setText("Vagas");
+        btnVagas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnVagas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnVagas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVagasActionPerformed(evt);
+            }
+        });
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/1443587194_icon-91.png"))); // NOI18N
-        jButton4.setText("Candidatos Aptos");
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCurriculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/entrevista.png"))); // NOI18N
+        btnCurriculo.setText("Currículos");
+        btnCurriculo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCurriculo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCurriculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCurriculoActionPerformed(evt);
+            }
+        });
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/1443586393_chat_conversation.png"))); // NOI18N
-        jButton5.setText("Entrevistas");
-        jButton5.setToolTipText("");
-        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCandidatos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/1443587194_icon-91.png"))); // NOI18N
+        btnCandidatos.setText("Candidatos Aptos");
+        btnCandidatos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCandidatos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCandidatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCandidatosActionPerformed(evt);
+            }
+        });
+
+        btnEntrevista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/1443586393_chat_conversation.png"))); // NOI18N
+        btnEntrevista.setText("Entrevistas");
+        btnEntrevista.setToolTipText("");
+        btnEntrevista.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnEntrevista.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEntrevista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEntrevistaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -79,15 +101,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnVagas, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCurriculo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCandidatos, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEntrevista, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(106, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -95,11 +117,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton5)
-                    .addComponent(jButton4)
-                    .addComponent(jButton3)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(btnEntrevista)
+                    .addComponent(btnCandidatos)
+                    .addComponent(btnCurriculo)
+                    .addComponent(btnVagas)
+                    .addComponent(btnEmpresa))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -119,12 +141,28 @@ public class TelaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        TelaVaga tv = new TelaVaga(this, true);
+    private void btnVagasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVagasActionPerformed
+        CadastroVaga cv = new CadastroVaga(this, true);
+        cv.setLocationRelativeTo(null);
+        cv.setVisible(true);
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnVagasActionPerformed
     
-                                          
+    private void btnEmpresaActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        
+    }
+    
+    private void btnCandidatosActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        
+    }
+    
+    private void btnEntrevistaActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        
+    }
+    
+    private void btnCurriculoActionPerformed(java.awt.event.ActionEvent evt) {                                         
+       
+    }
 
     /**
      * @param args the command line arguments
@@ -164,11 +202,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton btnCandidatos;
+    private javax.swing.JButton btnCurriculo;
+    private javax.swing.JButton btnEmpresa;
+    private javax.swing.JButton btnEntrevista;
+    private javax.swing.JButton btnVagas;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
