@@ -142,14 +142,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVagasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVagasActionPerformed
-        CadastroVaga cv = new CadastroVaga(this, true);
-        cv.setLocationRelativeTo(null);
-        cv.setVisible(true);
+        TelaPesquisaVaga tela = new TelaPesquisaVaga(this, true);
         
     }//GEN-LAST:event_btnVagasActionPerformed
     
     private void btnEmpresaActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        
+        TelaEmpresa tela = new TelaEmpresa(this, true);
+        tela.setLocationRelativeTo(null);
+        tela.setVisible(true);
     }
     
     private void btnCandidatosActionPerformed(java.awt.event.ActionEvent evt) {                                         
@@ -157,11 +157,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
     
     private void btnEntrevistaActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        
+        TelaEntrevista tela = new TelaEntrevista(this, true);
+        tela.setLocationRelativeTo(null);
+        tela.setVisible(true);
     }
     
     private void btnCurriculoActionPerformed(java.awt.event.ActionEvent evt) {                                         
-       
+       TelaCurriculo tela = new TelaCurriculo();
+        tela.setLocationRelativeTo(null);
+        tela.setVisible(true);
     }
 
     /**

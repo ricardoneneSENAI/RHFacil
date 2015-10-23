@@ -48,17 +48,22 @@ public class BeneficioVaga extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 10))); // NOI18N
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", 0, 0, new java.awt.Font("Dialog", 0, 10))); // NOI18N
 
-        ListBeneficioVaga.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Benefícios da vaga", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 10))); // NOI18N
+        ListBeneficioVaga.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Benefícios da vaga", 0, 0, new java.awt.Font("Dialog", 0, 10))); // NOI18N
         jScrollPane1.setViewportView(ListBeneficioVaga);
 
         btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/buttons/Back.png"))); // NOI18N
         btnVoltar.setText("Voltar");
 
-        jScrollPane3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 10))); // NOI18N
+        jScrollPane3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", 0, 0, new java.awt.Font("Dialog", 0, 10))); // NOI18N
 
-        ListBeneficioDisp.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Benefícios disponíveis", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 10))); // NOI18N
+        ListBeneficioDisp.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Benefícios disponíveis", 0, 0, new java.awt.Font("Dialog", 0, 10))); // NOI18N
+        ListBeneficioDisp.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "UNIMED", "GAROTAS NUAS" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
         jScrollPane3.setViewportView(ListBeneficioDisp);
 
         btnAvancarBen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/buttons/Forward.png"))); // NOI18N
