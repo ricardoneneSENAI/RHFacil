@@ -38,6 +38,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btnCurriculo = new javax.swing.JButton();
         btnCandidatos = new javax.swing.JButton();
         btnEntrevista = new javax.swing.JButton();
+        btnEntrevista1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -95,6 +96,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnEntrevista1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/1443586504_neck-tie.png"))); // NOI18N
+        btnEntrevista1.setText("Usuários");
+        btnEntrevista1.setToolTipText("");
+        btnEntrevista1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnEntrevista1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEntrevista1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEntrevista1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -110,13 +122,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(btnCandidatos, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnEntrevista, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnEntrevista1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnEntrevista1)
                     .addComponent(btnEntrevista)
                     .addComponent(btnCandidatos)
                     .addComponent(btnCurriculo)
@@ -145,6 +160,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         TelaPesquisaVaga tela = new TelaPesquisaVaga(this, true);
         
     }//GEN-LAST:event_btnVagasActionPerformed
+
+    private void btnEntrevista1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrevista1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEntrevista1ActionPerformed
     
     private void btnEmpresaActionPerformed(java.awt.event.ActionEvent evt) {                                         
         TelaEmpresa tela = new TelaEmpresa(this, true);
@@ -210,6 +229,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnCurriculo;
     private javax.swing.JButton btnEmpresa;
     private javax.swing.JButton btnEntrevista;
+    private javax.swing.JButton btnEntrevista1;
     private javax.swing.JButton btnVagas;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
