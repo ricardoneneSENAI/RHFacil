@@ -132,7 +132,7 @@ public class TelaConsultaEmpresa extends javax.swing.JDialog {
             }
         });
 
-        btnDetalhes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/buttons/About.png"))); // NOI18N
+        btnDetalhes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/buttons/List.png"))); // NOI18N
         btnDetalhes.setText("Detalhes");
         btnDetalhes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
