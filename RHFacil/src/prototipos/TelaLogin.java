@@ -138,8 +138,8 @@ public class TelaLogin extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         TelaPrincipal tp = new TelaPrincipal();
-        tp.setVisible(true);
         dispose();// TODO add your handling code here:
+        tp.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
