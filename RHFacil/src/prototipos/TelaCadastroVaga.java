@@ -21,12 +21,12 @@ import javax.swing.JTextField;
  *
  * @author marcelo_teodoro
  */
-public class CadastroVaga extends javax.swing.JDialog {
+public class TelaCadastroVaga extends javax.swing.JDialog {
 
     /**
      * Creates new form TelaVagaCadastro
      */
-    public CadastroVaga(java.awt.Frame parent, boolean modal) {
+    public TelaCadastroVaga(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
@@ -220,7 +220,7 @@ public class CadastroVaga extends javax.swing.JDialog {
         btnGrpViagem.add(rbnViagemNao);
         rbnViagemNao.setText("NÃO");
 
-        jPanel5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel5.setBorder(new javax.swing.border.SoftBevelBorder(0));
 
         ckbFisica.setText("Física");
         ckbFisica.setEnabled(false);
@@ -266,7 +266,7 @@ public class CadastroVaga extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jPanel6.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel6.setBorder(new javax.swing.border.SoftBevelBorder(0));
 
         jLabel10.setText("CNH:");
 
@@ -589,11 +589,11 @@ public class CadastroVaga extends javax.swing.JDialog {
     }//GEN-LAST:event_rbnTemporariaSimActionPerformed
 
     private void btnAdicionarBeneficiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarBeneficiosActionPerformed
-        BeneficioVaga bv = new BeneficioVaga(null, true);
+        TelaBeneficioVaga bv = new TelaBeneficioVaga(null, true);
     }//GEN-LAST:event_btnAdicionarBeneficiosActionPerformed
 
     private void btnAdicionarCompetenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarCompetenciasActionPerformed
-        CompetenciaVaga cv = new CompetenciaVaga(null, true);
+        TelaCompetenciaVaga cv = new TelaCompetenciaVaga(null, true);
     }//GEN-LAST:event_btnAdicionarCompetenciasActionPerformed
 
     private void rbnBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbnBActionPerformed
@@ -643,20 +643,20 @@ public class CadastroVaga extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroVaga.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadastroVaga.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroVaga.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadastroVaga.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroVaga.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadastroVaga.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroVaga.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadastroVaga.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                CadastroVaga dialog = new CadastroVaga(new javax.swing.JFrame(), true);
+                TelaCadastroVaga dialog = new TelaCadastroVaga(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
