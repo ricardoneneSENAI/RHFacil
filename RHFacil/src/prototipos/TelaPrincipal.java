@@ -171,7 +171,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCandidatosAptosActionPerformed
 
     private void btnEntrevistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrevistaActionPerformed
-        // TODO add your handling code here:
+        TelaPesquisarEntrevista tela = new TelaPesquisarEntrevista(this, true);
     }//GEN-LAST:event_btnEntrevistaActionPerformed
 
     private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
