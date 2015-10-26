@@ -61,7 +61,6 @@ public class TelaLogin extends javax.swing.JDialog {
             }
         });
 
-        jButton2.setForeground(new java.awt.Color(51, 153, 255));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/buttons/Question.png"))); // NOI18N
         jButton2.setText("Esqueceu a senha");
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
@@ -87,9 +86,8 @@ public class TelaLogin extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton2)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton1)))))
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1))))
                 .addContainerGap(64, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
