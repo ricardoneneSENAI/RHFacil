@@ -132,7 +132,7 @@ public class TelaEmpresa extends javax.swing.JDialog {
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
-                .addContainerGap(77, Short.MAX_VALUE)
+                .addGap(14, 14, 14)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel41, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel42, javax.swing.GroupLayout.Alignment.TRAILING)
