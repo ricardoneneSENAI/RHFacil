@@ -5,6 +5,8 @@
  */
 package prototipos;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author LUCAS
