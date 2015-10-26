@@ -138,13 +138,13 @@ public class TelaLogin extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         TelaPrincipal tp = new TelaPrincipal();
-        tp.setVisible(rootPaneCheckingEnabled);
+        tp.setVisible(true);
         dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-            TelaReiniciarSenha trs = new TelaReiniciarSenha(null, rootPaneCheckingEnabled);
-            trs.setVisible(rootPaneCheckingEnabled);// TODO add your handling code here:
+            TelaReiniciarSenha trs = new TelaReiniciarSenha(null, true);
+            trs.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
