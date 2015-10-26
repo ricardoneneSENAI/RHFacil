@@ -18,7 +18,7 @@ public class TelaLogin extends javax.swing.JDialog {
     public TelaLogin(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setlocationRelativeTo(null);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -116,11 +116,14 @@ public class TelaLogin extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        TelaPrincipal tp = new TelaPrincipal();
+        tp.setVisible(rootPaneCheckingEnabled);
+        dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+            TelaReiniciarSenha trs = new TelaReiniciarSenha(null, rootPaneCheckingEnabled);
+            trs.setVisible(rootPaneCheckingEnabled);// TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -174,11 +177,5 @@ public class TelaLogin extends javax.swing.JDialog {
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 
-    private void setlocationRelativeTolnull() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
-    private void setlocationRelativeTo(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
