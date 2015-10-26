@@ -5,6 +5,8 @@
  */
 package prototipos;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author LUCAS
@@ -171,7 +173,7 @@ public class TelaCandidatoApto extends javax.swing.JPanel {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12))); // NOI18N
 
-        jLabel2.setText("Nome do Candidato:");
+        jLabel2.setText("Pesquisar");
 
         tbPesquisa2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -281,15 +283,15 @@ public class TelaCandidatoApto extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        TelaCurriculos tela = new TelaCurriculos(null, true);
+       
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        TelaCurriculos tela = new TelaCurriculos(null, true);
+       
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        JOptionPane.showConfirmDialog(this, "Deseja Excluir?", "Excluir", JOptionPane.OK_CANCEL_OPTION);
+        
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
@@ -297,11 +299,11 @@ public class TelaCandidatoApto extends javax.swing.JPanel {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnNovo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovo1ActionPerformed
-        TelaCurriculos tela = new TelaCurriculos(null, true);
+        
     }//GEN-LAST:event_btnNovo1ActionPerformed
 
     private void btnExcluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluir1ActionPerformed
-        JOptionPane.showConfirmDialog(this, "Deseja Excluir?", "Excluir", JOptionPane.OK_CANCEL_OPTION);
+      
     }//GEN-LAST:event_btnExcluir1ActionPerformed
 
     private void btnVoltar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltar1ActionPerformed
