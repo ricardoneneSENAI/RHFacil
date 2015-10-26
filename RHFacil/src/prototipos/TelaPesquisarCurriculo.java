@@ -170,11 +170,11 @@ public class TelaPesquisarCurriculo extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        TelaCurriculo tela = new TelaCurriculo(null, true);
+        TelaCurriculos tela = new TelaCurriculos(null, true);
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        TelaCurriculo tela = new TelaCurriculo(null, true);
+        TelaCurriculos tela = new TelaCurriculos(null, true);
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
