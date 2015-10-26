@@ -6,6 +6,16 @@
 
 package prototipos;
 
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+
 /**
  *
  * @author marcelo_teodoro
@@ -20,6 +30,13 @@ public class CadastroVaga extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
+    }
+    
+    public void isEnable (boolean a){
+        ckbAuditiva.setEnabled(a);
+        ckbFisica.setEnabled(a);
+        ckbMental.setEnabled(a);
+        ckbVisual.setEnabled(a);         
     }
 
     /**
@@ -53,9 +70,6 @@ public class CadastroVaga extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        rbnPcdNao = new javax.swing.JRadioButton();
-        rbnPcdSim = new javax.swing.JRadioButton();
         jLabel11 = new javax.swing.JLabel();
         rbnTemporariaSim = new javax.swing.JRadioButton();
         rbnTemporariaNao = new javax.swing.JRadioButton();
@@ -78,6 +92,9 @@ public class CadastroVaga extends javax.swing.JDialog {
         rbnD = new javax.swing.JRadioButton();
         rbnC = new javax.swing.JRadioButton();
         rbnE = new javax.swing.JRadioButton();
+        jLabel9 = new javax.swing.JLabel();
+        rbnPcdSim = new javax.swing.JRadioButton();
+        rbnPcdNao = new javax.swing.JRadioButton();
         jLabel6 = new javax.swing.JLabel();
         lbCargoDoContato = new javax.swing.JLabel();
         lbTelefone = new javax.swing.JLabel();
@@ -86,13 +103,13 @@ public class CadastroVaga extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        cbEmpresa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbEmpresa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "" }));
 
         jLabel1.setText("Empresa:");
 
-        jLabel2.setText("Contato");
+        jLabel2.setText("Contato:");
 
-        jLabel3.setText("Telefones");
+        jLabel3.setText("Telefones:");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados da Vaga"));
 
@@ -107,7 +124,7 @@ public class CadastroVaga extends javax.swing.JDialog {
         });
 
         listCompetencias.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -127,7 +144,7 @@ public class CadastroVaga extends javax.swing.JDialog {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jScrollPane4)
-                .addGap(2, 2, 2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAdicionarCompetencias))
         );
 
@@ -138,19 +155,6 @@ public class CadastroVaga extends javax.swing.JDialog {
         jLabel7.setText("Salário:");
 
         jLabel8.setText("Carga Horária Semanal:");
-
-        jLabel9.setText("Vaga para PCD:");
-
-        btnGrpPcd.add(rbnPcdNao);
-        rbnPcdNao.setText("NÃO");
-        rbnPcdNao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbnPcdNaoActionPerformed(evt);
-            }
-        });
-
-        btnGrpPcd.add(rbnPcdSim);
-        rbnPcdSim.setText("SIM");
 
         jLabel11.setText("Temporária:");
 
@@ -176,7 +180,7 @@ public class CadastroVaga extends javax.swing.JDialog {
         });
 
         listBeneficios.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -216,6 +220,7 @@ public class CadastroVaga extends javax.swing.JDialog {
         jPanel5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         ckbFisica.setText("Física");
+        ckbFisica.setEnabled(false);
         ckbFisica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ckbFisicaActionPerformed(evt);
@@ -223,17 +228,20 @@ public class CadastroVaga extends javax.swing.JDialog {
         });
 
         ckbVisual.setText("Visual");
+        ckbVisual.setEnabled(false);
 
         ckbAuditiva.setText("Auditiva");
+        ckbAuditiva.setEnabled(false);
 
         ckbMental.setText("Mental");
+        ckbMental.setEnabled(false);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(77, 77, 77)
+                .addGap(40, 40, 40)
                 .addComponent(ckbFisica)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ckbVisual)
@@ -241,18 +249,18 @@ public class CadastroVaga extends javax.swing.JDialog {
                 .addComponent(ckbAuditiva)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ckbMental)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(ckbFisica)
                     .addComponent(ckbVisual)
                     .addComponent(ckbAuditiva)
                     .addComponent(ckbMental))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jPanel6.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -303,9 +311,9 @@ public class CadastroVaga extends javax.swing.JDialog {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addContainerGap()
                 .addComponent(jLabel10)
-                .addGap(34, 34, 34)
+                .addGap(18, 18, 18)
                 .addComponent(ckbA)
                 .addGap(18, 18, 18)
                 .addComponent(rbnB)
@@ -328,8 +336,26 @@ public class CadastroVaga extends javax.swing.JDialog {
                     .addComponent(rbnC)
                     .addComponent(rbnD)
                     .addComponent(rbnE))
-                .addGap(5, 5, 5))
+                .addContainerGap())
         );
+
+        jLabel9.setText("Vaga para PCD:");
+
+        btnGrpPcd.add(rbnPcdSim);
+        rbnPcdSim.setText("SIM");
+        rbnPcdSim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbnPcdSimActionPerformed(evt);
+            }
+        });
+
+        btnGrpPcd.add(rbnPcdNao);
+        rbnPcdNao.setText("NÃO");
+        rbnPcdNao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbnPcdNaoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -341,40 +367,41 @@ public class CadastroVaga extends javax.swing.JDialog {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING))
                             .addComponent(jLabel11))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtSalario)
                             .addComponent(txtFuncao)
                             .addComponent(txtCargo)
-                            .addComponent(txtCargaHoraria)))
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel12)
+                            .addComponent(txtCargaHoraria)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(15, 15, 15)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(rbnViagemSim)
+                                .addGap(21, 21, 21)
+                                .addComponent(rbnTemporariaSim)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(rbnViagemNao))
+                                .addComponent(rbnTemporariaNao)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(txtSalario)))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(rbnPcdSim)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(rbnPcdNao))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(rbnTemporariaSim)
+                                .addComponent(rbnViagemSim)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(rbnTemporariaNao)))
-                        .addGap(0, 107, Short.MAX_VALUE)))
+                                .addComponent(rbnViagemNao)))
+                        .addGap(77, 77, 77)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -385,57 +412,56 @@ public class CadastroVaga extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel11)
-                                .addComponent(rbnTemporariaSim)
-                                .addComponent(rbnTemporariaNao))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel4))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtFuncao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel5))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel7))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel8)
-                                .addComponent(txtCargaHoraria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(7, 7, 7)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel9)
-                                .addComponent(rbnPcdSim)
-                                .addComponent(rbnPcdNao))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel12)
-                                .addComponent(rbnViagemSim)
-                                .addComponent(rbnViagemNao)))))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11)
+                            .addComponent(rbnTemporariaSim)
+                            .addComponent(rbnTemporariaNao))
+                        .addGap(7, 7, 7)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtFuncao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(txtCargaHoraria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12)
+                            .addComponent(rbnViagemSim)
+                            .addComponent(rbnViagemNao))
+                        .addGap(7, 7, 7)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(rbnPcdSim)
+                            .addComponent(rbnPcdNao))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel6.setText("Cargo do Contato:");
 
-        lbCargoDoContato.setText("-------");
+        lbCargoDoContato.setText("-");
 
-        lbTelefone.setText("-----------");
+        lbTelefone.setText("-");
 
-        lbTelefone2.setText("------------");
+        lbTelefone2.setText("-");
 
-        lbContato.setText("----------------");
+        lbContato.setText("-");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -482,7 +508,7 @@ public class CadastroVaga extends javax.swing.JDialog {
                         .addComponent(jLabel3))
                     .addComponent(lbCargoDoContato, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbTelefone, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -515,7 +541,13 @@ public class CadastroVaga extends javax.swing.JDialog {
     }//GEN-LAST:event_ckbFisicaActionPerformed
 
     private void rbnPcdNaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbnPcdNaoActionPerformed
-        // TODO add your handling code here:
+        if (rbnPcdNao.isSelected()) {
+            isEnable(false);  
+            ckbAuditiva.setSelected(false);
+            ckbFisica.setSelected(false);
+            ckbMental.setSelected(false);
+            ckbVisual.setSelected(false);
+        }
     }//GEN-LAST:event_rbnPcdNaoActionPerformed
 
     private void rbnViagemSimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbnViagemSimActionPerformed
@@ -549,6 +581,12 @@ public class CadastroVaga extends javax.swing.JDialog {
     private void rbnEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbnEActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rbnEActionPerformed
+
+    private void rbnPcdSimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbnPcdSimActionPerformed
+        if (rbnPcdSim.isSelected()) {
+            isEnable(true);                   
+        }         
+    }//GEN-LAST:event_rbnPcdSimActionPerformed
 
     /**
      * @param args the command line arguments
@@ -591,6 +629,136 @@ public class CadastroVaga extends javax.swing.JDialog {
             }
         });
     }
+
+    public JButton getBtnAdicionarBeneficios() {
+        return btnAdicionarBeneficios;
+    }
+
+    public JButton getBtnAdicionarCompetencias() {
+        return btnAdicionarCompetencias;
+    }
+
+    public ButtonGroup getBtnGrpCnh() {
+        return btnGrpCnh;
+    }
+
+    public ButtonGroup getBtnGrpPcd() {
+        return btnGrpPcd;
+    }
+
+    public ButtonGroup getBtnGrpTemporaria() {
+        return btnGrpTemporaria;
+    }
+
+    public ButtonGroup getBtnGrpViagem() {
+        return btnGrpViagem;
+    }
+
+    public JComboBox getCbEmpresa() {
+        return cbEmpresa;
+    }
+
+    public JCheckBox getCkbA() {
+        return ckbA;
+    }
+
+    public JCheckBox getCkbAuditiva() {
+        return ckbAuditiva;
+    }
+
+    public JCheckBox getCkbFisica() {
+        return ckbFisica;
+    }
+
+    public JCheckBox getCkbMental() {
+        return ckbMental;
+    }
+
+    public JCheckBox getCkbVisual() {
+        return ckbVisual;
+    }
+
+    public JLabel getLbCargoDoContato() {
+        return lbCargoDoContato;
+    }
+
+    public JLabel getLbContato() {
+        return lbContato;
+    }
+
+    public JLabel getLbTelefone() {
+        return lbTelefone;
+    }
+
+    public JLabel getLbTelefone2() {
+        return lbTelefone2;
+    }
+
+    public JList getListBeneficios() {
+        return listBeneficios;
+    }
+
+    public JList getListCompetencias() {
+        return listCompetencias;
+    }
+
+    public JRadioButton getRbnB() {
+        return rbnB;
+    }
+
+    public JRadioButton getRbnC() {
+        return rbnC;
+    }
+
+    public JRadioButton getRbnD() {
+        return rbnD;
+    }
+
+    public JRadioButton getRbnE() {
+        return rbnE;
+    }
+
+    public JRadioButton getRbnPcdNao() {
+        return rbnPcdNao;
+    }
+
+    public JRadioButton getRbnPcdSim() {
+        return rbnPcdSim;
+    }
+
+    public JRadioButton getRbnTemporariaNao() {
+        return rbnTemporariaNao;
+    }
+
+    public JRadioButton getRbnTemporariaSim() {
+        return rbnTemporariaSim;
+    }
+
+    public JRadioButton getRbnViagemNao() {
+        return rbnViagemNao;
+    }
+
+    public JRadioButton getRbnViagemSim() {
+        return rbnViagemSim;
+    }
+
+    public JTextField getTxtCargaHoraria() {
+        return txtCargaHoraria;
+    }
+
+    public JTextField getTxtCargo() {
+        return txtCargo;
+    }
+
+    public JTextField getTxtFuncao() {
+        return txtFuncao;
+    }
+
+    public JFormattedTextField getTxtSalario() {
+        return txtSalario;
+    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionarBeneficios;
