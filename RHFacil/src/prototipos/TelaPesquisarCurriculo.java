@@ -182,7 +182,7 @@ public class TelaPesquisarCurriculo extends javax.swing.JDialog {
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-
+        dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
