@@ -199,14 +199,17 @@ public class TelaConsultaEmpresa extends javax.swing.JDialog {
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         TelaEmpresa tela = new TelaEmpresa(null, true);
+        tela.setVisible(true);
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         TelaEmpresa tela = new TelaEmpresa(null, true);
+        tela.setVisible(true);
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnDetalhesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalhesActionPerformed
         TelaEmpresa tela = new TelaEmpresa(null, true);
+        tela.setVisible(true);
     }//GEN-LAST:event_btnDetalhesActionPerformed
 
     /**
