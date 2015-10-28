@@ -14,7 +14,7 @@ public class CurriculoDAO {
 
     public int salvar(/*CRIAR ENTIDADE*/Curriculo curriculo) {
         
-        /*CRIAR CONECTION*/
+        /*CRIAR CONNECTION*/
         
         //inicializando o retorno da função, caso tenha algum problema deve ser retornar o valor -1
         int resultado = -1;
@@ -72,7 +72,7 @@ public class CurriculoDAO {
 
         try {
             PreparedStatement stmt = null;
-            /*CRIAR CONECTION*/
+            /*CRIAR CONNECTION*/
             Connection conn = ConnectionManager.getConnection();
 
             /*ARRUMAR QUERY*/String QUERY_DELETE = "delete from curriculo where idcurriculo = ?";
