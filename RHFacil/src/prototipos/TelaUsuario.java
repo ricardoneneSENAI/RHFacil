@@ -45,7 +45,7 @@ public class TelaUsuario extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/buttons/Go back.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/buttons/Back.png"))); // NOI18N
         jButton1.setText("Voltar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,7 +65,7 @@ public class TelaUsuario extends javax.swing.JDialog {
 
         jLabel3.setText("Senha");
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/buttons/OK.png"))); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/buttons/Save.png"))); // NOI18N
         jButton3.setText("Salvar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

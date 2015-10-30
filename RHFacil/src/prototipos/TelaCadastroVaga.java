@@ -429,9 +429,9 @@ public class TelaCadastroVaga extends javax.swing.JDialog {
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(jButton1)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)))
+                        .addComponent(jButton2)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
