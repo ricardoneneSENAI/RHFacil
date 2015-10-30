@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 
-package prototipos;
+package view;
 
+import prototipos.*;
 import dao.UsuarioDAO;
 import javax.swing.JOptionPane;
 

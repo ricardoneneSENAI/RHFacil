@@ -5,13 +5,37 @@ package entity;
  *
  * @author willyam evangelista / João Souza
  */
-public class EntidadeUsuarios {
+public class Usuarios {
+    private Integer IdUsuarios;
     private String nomeUsuarios;
     private String senhaUsuarios;
     private String cpfUsuarios;
     private String emailUsuarios;
     private String perfilUsuarios;
+    
+public Usuarios (){
 
+}
+    public Usuarios(Integer IdUsuarios, String nomeUsuarios, String senhaUsuarios, String cpfUsuarios, String emailUsuarios, String perfilUsuarios) {
+        this.IdUsuarios = IdUsuarios;
+        this.nomeUsuarios = nomeUsuarios;
+        this.senhaUsuarios = senhaUsuarios;
+        this.cpfUsuarios = cpfUsuarios;
+        this.emailUsuarios = emailUsuarios;
+        this.perfilUsuarios = perfilUsuarios;
+    }
+    
+   
+    
+
+    public Integer getIdUsuarios() {
+        return IdUsuarios;
+    }
+
+    public void setIdUsuarios(Integer IdUsuarios) {
+        this.IdUsuarios = IdUsuarios;
+    }
+    
     public String getNomeUsuarios() {
         return nomeUsuarios;
     }
