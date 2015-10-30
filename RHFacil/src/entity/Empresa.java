@@ -8,6 +8,7 @@ package entity;
 
 
     public class Empresa {
+    private Integer idEmpresa;
     private String nomeEmpresa;
     private String razaoSocial;
     private String CNPJ;
@@ -19,6 +20,22 @@ package entity;
     private String bairro;
     private String UF;
     private String cidade;
+
+    
+    
+    public Integer getIdEmpresa() {
+        return idEmpresa;
+    }
+
+    public void setIdEmpresa(Integer idEmpresa) {
+        this.idEmpresa = idEmpresa;
+    }
+
+    
+
+    
+
+    
 
     public String getNomeEmpresa() {
         return nomeEmpresa;
