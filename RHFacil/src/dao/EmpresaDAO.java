@@ -5,6 +5,7 @@
  */
 package dao;
 
+import entity.Empresa;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -19,26 +20,50 @@ public class EmpresaDAO {
 
     public Empresa salvar(Empresa empresa) {
         Empresa retorno = null;
-
         try {
-            Class.forName("org.gjt.mm.mysql.Driver");
-            Connection conn;
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/senai", "root", "");
-            if (Empresa.getId() == null) {
-                String query = "insert into empresa ()";
+            
+            Connection conn = ConnectionManager.getConnection();
+            if (empresa.getIdEmpresa()== null) {
+                String query = "insert into empresa "
+                        + "(idEmpresa, nomeEmpresa, razaoSocial, CNPJ, inscricaoEstadual, logradouro, "
+                        + "numero, complemento, CEP, bairro, UF, cidade) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 PreparedStatement sttm = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-                sttm.setInt(1, empresa.getEmpresa().getIdEmpresa());
+                sttm.setInt(1, empresa.getIdEmpresa());
+                sttm.setString(2, empresa.getNomeEmpresa());
+                sttm.setString(3, empresa.getRazaoSocial());
+                sttm.setString(4, empresa.getCNPJ());
+                sttm.setString(5, empresa.getInscricaoEstadual());
+                sttm.setString(6, empresa.getLogradouro());
+                sttm.setString(7, empresa.getNumero());
+                sttm.setString(8, empresa.getComplemento());
+                sttm.setString(9, empresa.getCEP());
+                sttm.setString(10, empresa.getBairro());
+                sttm.setString(11, empresa.getUF());
+                sttm.setString(12, empresa.getCidade());
                 sttm.executeUpdate();
                 ResultSet rs = sttm.getGeneratedKeys();
                 if (rs.next()) {
-                    empresa.setId(rs.getInt(1));
+                    empresa.setIdEmpresa(rs.getInt(1));
                 }
                 retorno = empresa;
                 sttm.close();
             } else {
-                String query = "insert into empresa ()";
+                String query = "insert into empresa "
+                        + "(idEmpresa, nomeEmpresa, razaoSocial, CNPJ, inscricaoEstadual, logradouro, "
+                        + "numero, complemento, CEP, bairro, UF, cidade) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 PreparedStatement sttm = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-                sttm.setInt(1, empresa.getEmpresa().getIdEmpresa());
+                sttm.setInt(1, empresa.getIdEmpresa());
+                sttm.setString(2, empresa.getNomeEmpresa());
+                sttm.setString(3, empresa.getRazaoSocial());
+                sttm.setString(4, empresa.getCNPJ());
+                sttm.setString(5, empresa.getInscricaoEstadual());
+                sttm.setString(6, empresa.getLogradouro());
+                sttm.setString(7, empresa.getNumero());
+                sttm.setString(8, empresa.getComplemento());
+                sttm.setString(9, empresa.getCEP());
+                sttm.setString(10, empresa.getBairro());
+                sttm.setString(11, empresa.getUF());
+                sttm.setString(12, empresa.getCidade());
                 sttm.executeUpdate();
                 retorno = empresa;
                 sttm.close();
