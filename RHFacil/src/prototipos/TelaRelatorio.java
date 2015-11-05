@@ -5,6 +5,16 @@
  */
 package prototipos;
 
+import java.awt.Component;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 /**
  *
  * @author kevin_murilo
@@ -23,7 +33,73 @@ public class TelaRelatorio extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
+        Component[] listaObjetos = getPnlTipoRelatorio().getComponents();
         
+        for (Component component : listaObjetos) {
+            if (component instanceof JButton) {
+                ((JButton)component).setBorderPainted(false);
+                ((JButton)component).setContentAreaFilled(false);
+                ((JButton)component).setSelected(false);
+            }
+        }
+        repaint();
+        revalidate();
+        
+            TelaRelatorioVaga vaga  = new TelaRelatorioVaga();   
+            pnlTipoFiltro.removeAll();
+            pnlTipoFiltro.add(vaga );
+            vaga.setVisible(true);
+            pnlTipoFiltro.repaint();
+            pnlTipoFiltro.revalidate();  
+        
+    }
+
+    public JButton getBtnCurriculo() {
+        return btnCurriculo;
+    }
+
+    public JButton getBtnEmpresa() {
+        return btnEmpresa;
+    }
+
+    public JButton getBtnPesquisar() {
+        return btnPesquisar;
+    }
+
+    public JButton getBtnVagas() {
+        return btnVagas;
+    }
+
+    public JComboBox getCbxFiltro() {
+        return cbxFiltro;
+    }
+
+    public JPanel getPnlFundo() {
+        return pnlResultado;
+    }
+
+    public JPanel getPnlTipoRelatorio() {
+        return pnlTipoRelatorio;
+    }
+
+    public JTable getTblResultado() {
+        return tblResultado;
+    }
+
+    public JFormattedTextField getTxtDataFinal() {
+        return txtDataFinal;
+    }
+
+    public JFormattedTextField getTxtDataInicial() {
+        return txtDataInicial;
+    }
+
+    public JTextField getTxtPesquisa() {
+        return txtPesquisa;
+    }
+
+    public JTextField getTxtRetorno() {
+        return txtRetorno;
     }
 
     /**
@@ -35,124 +111,207 @@ public class TelaRelatorio extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        pnlTipoRelatorio = new javax.swing.JPanel();
+        btnVagas = new javax.swing.JButton();
+        btnCurriculo = new javax.swing.JButton();
+        btnEmpresa = new javax.swing.JButton();
+        pnlResultado = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblResultado = new javax.swing.JTable();
+        pnlTipoFiltro = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        cbxSelecao = new javax.swing.JComboBox();
+        cbxFiltro = new javax.swing.JComboBox();
+        txtDataInicial = new javax.swing.JFormattedTextField();
+        txtDataFinal = new javax.swing.JFormattedTextField();
         jLabel2 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
         jLabel3 = new javax.swing.JLabel();
+        txtRetorno = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        pnlFundo = new javax.swing.JPanel();
+        txtPesquisa = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        btnPesquisar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Relatório"));
+        pnlTipoRelatorio.setBorder(javax.swing.BorderFactory.createTitledBorder("Tipo de Relatório"));
 
-        jLabel1.setText("Tipo de Relatório");
-
-        cbxSelecao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Candidato", "Vaga", "Empresa" }));
-        cbxSelecao.setSelectedIndex(-1);
-        cbxSelecao.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cbxSelecaoItemStateChanged(evt);
-            }
-        });
-        cbxSelecao.addActionListener(new java.awt.event.ActionListener() {
+        btnVagas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/vagas.png"))); // NOI18N
+        btnVagas.setText("Vagas");
+        btnVagas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnVagas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnVagas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxSelecaoActionPerformed(evt);
-            }
-        });
-        cbxSelecao.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                cbxSelecaoPropertyChange(evt);
+                btnVagasActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("Data de Referência");
+        btnCurriculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/entrevista.png"))); // NOI18N
+        btnCurriculo.setText("Currículos");
+        btnCurriculo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCurriculo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCurriculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCurriculoActionPerformed(evt);
+            }
+        });
+
+        btnEmpresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/1443593833_Shop.png"))); // NOI18N
+        btnEmpresa.setText("Empresas");
+        btnEmpresa.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnEmpresa.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEmpresa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEmpresaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlTipoRelatorioLayout = new javax.swing.GroupLayout(pnlTipoRelatorio);
+        pnlTipoRelatorio.setLayout(pnlTipoRelatorioLayout);
+        pnlTipoRelatorioLayout.setHorizontalGroup(
+            pnlTipoRelatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTipoRelatorioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnVagas, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnCurriculo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+        pnlTipoRelatorioLayout.setVerticalGroup(
+            pnlTipoRelatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTipoRelatorioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlTipoRelatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnCurriculo)
+                    .addComponent(btnVagas)
+                    .addComponent(btnEmpresa))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        pnlResultado.setBorder(javax.swing.BorderFactory.createTitledBorder("Resultado"));
+        pnlResultado.setLayout(new java.awt.CardLayout());
+
+        tblResultado.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tblResultado);
+
+        pnlResultado.add(jScrollPane1, "card2");
+
+        pnlTipoFiltro.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        jLabel1.setText("Filtro");
+
+        cbxFiltro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TIPO", "NOME" }));
+        cbxFiltro.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxFiltroItemStateChanged(evt);
+            }
+        });
+        cbxFiltro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxFiltroActionPerformed(evt);
+            }
+        });
 
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            txtDataInicial.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtDataInicial.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtDataInicial.setText("10/02/2015");
 
         try {
-            jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            txtDataFinal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtDataFinal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtDataFinal.setText("10/02/2015");
+
+        jLabel2.setText("Período");
 
         jLabel3.setText("até");
 
         jLabel4.setText("Retornos");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/buttons/Find.png"))); // NOI18N
-        jButton1.setText("Pesquisar");
+        jLabel5.setText("Pesquisa");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        btnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/buttons/Find.png"))); // NOI18N
+        btnPesquisar.setText("Pesquisar");
+
+        javax.swing.GroupLayout pnlTipoFiltroLayout = new javax.swing.GroupLayout(pnlTipoFiltro);
+        pnlTipoFiltro.setLayout(pnlTipoFiltroLayout);
+        pnlTipoFiltroLayout.setHorizontalGroup(
+            pnlTipoFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTipoFiltroLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbxSelecao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
+                .addGroup(pnlTipoFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlTipoFiltroLayout.createSequentialGroup()
+                        .addGroup(pnlTipoFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(cbxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlTipoFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlTipoFiltroLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jTextField1))
-                        .addGap(10, 10, 10))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                            .addComponent(txtDataInicial))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtDataFinal)
+                        .addGap(8, 8, 8)
+                        .addGroup(pnlTipoFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtRetorno, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)))
+                    .addGroup(pnlTipoFiltroLayout.createSequentialGroup()
+                        .addComponent(txtPesquisa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnPesquisar))
+                    .addGroup(pnlTipoFiltroLayout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        pnlTipoFiltroLayout.setVerticalGroup(
+            pnlTipoFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTipoFiltroLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbxSelecao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlTipoFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnlTipoFiltroLayout.createSequentialGroup()
+                        .addGroup(pnlTipoFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlTipoFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(cbxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(txtRetorno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(pnlTipoFiltroLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlTipoFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtDataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtDataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnlTipoFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPesquisar)
+                    .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14))
         );
-
-        pnlFundo.setBorder(javax.swing.BorderFactory.createTitledBorder("Teste"));
-        pnlFundo.setLayout(new java.awt.CardLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -161,75 +320,83 @@ public class TelaRelatorio extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlFundo, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(pnlResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(pnlTipoFiltro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pnlTipoRelatorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 4, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(pnlTipoRelatorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlFundo, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                .addComponent(pnlTipoFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbxSelecaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxSelecaoActionPerformed
-//        switch (cbxSelecao.getSelectedIndex()) {
-//            case -1:
-//                pnlFundo.removeAll();
-//            case 0:
-//                pnlFundo.removeAll();
-//                pnlFundo.add(candidato);
-//                candidato.setVisible(true);
-//            case 1:
-//                pnlFundo.removeAll();
-//                pnlFundo.add(vaga);
-//                vaga.setVisible(true);
-//            case 2:
-//                pnlFundo.removeAll();
-//                pnlFundo.add(empresa);
-//                empresa.setVisible(true);
-//        }
-    }//GEN-LAST:event_cbxSelecaoActionPerformed
+    private void btnVagasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVagasActionPerformed
+         cbxFiltro.removeAllItems();
+         cbxFiltro.addItem("TIPO");
+         cbxFiltro.addItem("NOME");
+        /*TelaRelatorioVaga vaga  = new TelaRelatorioVaga();   
+            pnlTipoFiltro.removeAll();
+            pnlTipoFiltro.add(vaga);
+            vaga.setVisible(true);
+            pnlTipoFiltro.repaint();
+            pnlTipoFiltro.revalidate();  */      
+    }//GEN-LAST:event_btnVagasActionPerformed
 
-    private void cbxSelecaoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_cbxSelecaoPropertyChange
+    private void btnCurriculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCurriculoActionPerformed
+         cbxFiltro.removeAllItems();
+         cbxFiltro.addItem("CPF");
+         cbxFiltro.addItem("NOME");   
+        /* TelaRelatorioCandidato candidato  = new TelaRelatorioCandidato();
+            pnlTipoFiltro.removeAll();
+            pnlTipoFiltro.add(candidato );
+            candidato.setVisible(true);
+            pnlTipoFiltro.repaint();
+            pnlTipoFiltro.revalidate();*/
+    }//GEN-LAST:event_btnCurriculoActionPerformed
 
-    }//GEN-LAST:event_cbxSelecaoPropertyChange
+    private void btnEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpresaActionPerformed
+         cbxFiltro.removeAllItems();
+         cbxFiltro.addItem("CNPJ");
+         cbxFiltro.addItem("NOME FANTASIA");   
+        /* TelaRelatorioEmpresa empresa = new TelaRelatorioEmpresa();    
+            pnlTipoFiltro.removeAll();
+            pnlTipoFiltro.add(empresa);
+            empresa.setVisible(true);
+            pnlTipoFiltro.repaint();
+            pnlTipoFiltro.revalidate(); */
+    }//GEN-LAST:event_btnEmpresaActionPerformed
 
-    private void cbxSelecaoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxSelecaoItemStateChanged
-        TelaRelatorioCandidato candidato  = new TelaRelatorioCandidato();
-        TelaRelatorioVaga vaga  = new TelaRelatorioVaga();
-        TelaRelatorioEmpresa empresa = new TelaRelatorioEmpresa();
-            if (cbxSelecao.getSelectedIndex() == -1) {
-                pnlFundo.removeAll();
-            }
-            if (cbxSelecao.getSelectedIndex() == 0) {
-                pnlFundo.removeAll();
-                pnlFundo.add(candidato );
-                candidato.setVisible(true);
-                pnlFundo.repaint();
-                pnlFundo.revalidate();
-            }
-            if (cbxSelecao.getSelectedIndex() == 1) {
-                pnlFundo.removeAll();
-                pnlFundo.add(vaga );
-                vaga.setVisible(true);
-                pnlFundo.repaint();
-                pnlFundo.revalidate();
-            }
-            if (cbxSelecao.getSelectedIndex() == 2) {
-                pnlFundo.removeAll();
-                pnlFundo.add(empresa);
-                empresa.setVisible(true);
-                pnlFundo.repaint();
-                pnlFundo.revalidate();
-            }
-    }//GEN-LAST:event_cbxSelecaoItemStateChanged
+    private void cbxFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxFiltroActionPerformed
+
+    }//GEN-LAST:event_cbxFiltroActionPerformed
+
+    private void cbxFiltroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxFiltroItemStateChanged
+                    
+        /*if (cbxFiltro.getSelectedIndex() == -1) {
+           
+        }
+        if (cbxFiltro.getSelectedIndex() == 0) {
+
+        }
+        if (cbxFiltro.getSelectedIndex() == 1) {
+
+        }
+        if (cbxFiltro.getSelectedIndex() == 2) {
+
+        }*/
+    }//GEN-LAST:event_cbxFiltroItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -273,17 +440,33 @@ public class TelaRelatorio extends javax.swing.JDialog {
         });
     }
 
+    public JPanel getPnlResultado() {
+        return pnlResultado;
+    }
+
+    public JPanel getPnlTipoFiltro() {
+        return pnlTipoFiltro;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox cbxSelecao;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
+    private javax.swing.JButton btnCurriculo;
+    private javax.swing.JButton btnEmpresa;
+    private javax.swing.JButton btnPesquisar;
+    private javax.swing.JButton btnVagas;
+    private javax.swing.JComboBox cbxFiltro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JPanel pnlFundo;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel pnlResultado;
+    private javax.swing.JPanel pnlTipoFiltro;
+    private javax.swing.JPanel pnlTipoRelatorio;
+    private javax.swing.JTable tblResultado;
+    private javax.swing.JFormattedTextField txtDataFinal;
+    private javax.swing.JFormattedTextField txtDataInicial;
+    private javax.swing.JTextField txtPesquisa;
+    private javax.swing.JTextField txtRetorno;
     // End of variables declaration//GEN-END:variables
 }
