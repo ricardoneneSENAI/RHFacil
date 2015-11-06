@@ -13,17 +13,16 @@ public class UsuarioDAO {
         Usuarios retorno = null;
         try {
             Class.forName("org.gjt.mm.mysql.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/senai", "root", "");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/RHFACIL", "root", "");
             if (usuario.getIdUsuarios() == null) {
                 String query = "insert into usuario(idUsuarios, nomeUsuarios, senhaUsuarios, "
                         + "cpfUsuarios, emailUsuarios, perfilUsuarios) "
                         + "values(?,?,?,?,?,?)";
                 PreparedStatement sttm = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-                sttm.setString(1, usuario.getNomeUsuarios());
-                sttm.setString(2, usuario.getSenhaUsuarios());
-                sttm.setString(3, usuario.getCpfUsuarios());
-                sttm.setString(4, usuario.getEmailUsuarios());
-                sttm.setString(5, usuario.getPerfilUsuarios());
+                sttm.setString(1, usuario.getNome());
+                sttm.setString(2, usuario.getSenha());
+                sttm.setString(4, usuario.getEmail());
+                sttm.setString(5, usuario.getPerfil());
 //              
                 sttm.executeUpdate();
                 ResultSet rs = sttm.getGeneratedKeys();
@@ -33,14 +32,13 @@ public class UsuarioDAO {
                 retorno = usuario;
                 sttm.close();
             } else {
-                String query = "update produto set idvaga=?";
+                String query = "update produto set idUsuarios=?";
                 PreparedStatement sttm = conn.prepareStatement(query);
                 sttm.setInt(1, usuario.getIdUsuarios());
-                sttm.setString(2, usuario.getNomeUsuarios());
-                sttm.setString(3, usuario.getSenhaUsuarios());
-                sttm.setString(4, usuario.getCpfUsuarios());
-                sttm.setString(5, usuario.getEmailUsuarios());
-                sttm.setString(6, usuario.getPerfilUsuarios());
+                sttm.setString(2, usuario.getNome());
+                sttm.setString(3, usuario.getSenha());
+                sttm.setString(5, usuario.getEmail());
+                sttm.setString(6, usuario.getPerfil());
 
                 sttm.executeUpdate();
                 retorno = usuario;
