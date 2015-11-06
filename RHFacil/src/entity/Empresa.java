@@ -31,12 +31,6 @@ package entity;
         this.idEmpresa = idEmpresa;
     }
 
-    
-
-    
-
-    
-
     public String getNomeEmpresa() {
         return nomeEmpresa;
     }
@@ -127,4 +121,3 @@ package entity;
     
     
     }
-
