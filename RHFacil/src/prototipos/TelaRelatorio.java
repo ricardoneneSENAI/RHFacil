@@ -111,6 +111,8 @@ public class TelaRelatorio extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jCheckBox2 = new javax.swing.JCheckBox();
         pnlTipoRelatorio = new javax.swing.JPanel();
         btnVagas = new javax.swing.JButton();
         btnCurriculo = new javax.swing.JButton();
@@ -130,6 +132,11 @@ public class TelaRelatorio extends javax.swing.JDialog {
         txtPesquisa = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         btnPesquisar = new javax.swing.JButton();
+        jCheckBox3 = new javax.swing.JCheckBox();
+
+        jCheckBox1.setText("jCheckBox1");
+
+        jCheckBox2.setText("jCheckBox2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -176,7 +183,7 @@ public class TelaRelatorio extends javax.swing.JDialog {
                 .addComponent(btnCurriculo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         pnlTipoRelatorioLayout.setVerticalGroup(
             pnlTipoRelatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,6 +257,8 @@ public class TelaRelatorio extends javax.swing.JDialog {
         btnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/buttons/Find.png"))); // NOI18N
         btnPesquisar.setText("Pesquisar");
 
+        jCheckBox3.setText("PCD");
+
         javax.swing.GroupLayout pnlTipoFiltroLayout = new javax.swing.GroupLayout(pnlTipoFiltro);
         pnlTipoFiltro.setLayout(pnlTipoFiltroLayout);
         pnlTipoFiltroLayout.setHorizontalGroup(
@@ -259,19 +268,21 @@ public class TelaRelatorio extends javax.swing.JDialog {
                 .addGroup(pnlTipoFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlTipoFiltroLayout.createSequentialGroup()
                         .addGroup(pnlTipoFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(cbxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlTipoFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlTipoFiltroLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
+                                .addComponent(jLabel1)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(txtDataInicial))
+                            .addComponent(cbxFiltro, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCheckBox3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(pnlTipoFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(txtDataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtDataFinal)
-                        .addGap(8, 8, 8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtDataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(pnlTipoFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtRetorno, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4)))
@@ -287,26 +298,25 @@ public class TelaRelatorio extends javax.swing.JDialog {
         pnlTipoFiltroLayout.setVerticalGroup(
             pnlTipoFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTipoFiltroLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(13, 13, 13)
                 .addGroup(pnlTipoFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pnlTipoFiltroLayout.createSequentialGroup()
                         .addGroup(pnlTipoFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlTipoFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(cbxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(txtRetorno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(pnlTipoFiltroLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlTipoFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtDataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
-                            .addComponent(txtDataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTipoFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel2)))
+                        .addGap(26, 26, 26))
+                    .addGroup(pnlTipoFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtDataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3)
+                        .addComponent(jCheckBox3)
+                        .addComponent(txtDataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtRetorno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlTipoFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPesquisar)
                     .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -325,7 +335,7 @@ public class TelaRelatorio extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(pnlTipoFiltro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(pnlTipoRelatorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 4, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -344,8 +354,9 @@ public class TelaRelatorio extends javax.swing.JDialog {
 
     private void btnVagasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVagasActionPerformed
          cbxFiltro.removeAllItems();
+         cbxFiltro.addItem("CARGO");
          cbxFiltro.addItem("TIPO");
-         cbxFiltro.addItem("NOME");
+         cbxFiltro.addItem("FAIXA SALARIAL");
         /*TelaRelatorioVaga vaga  = new TelaRelatorioVaga();   
             pnlTipoFiltro.removeAll();
             pnlTipoFiltro.add(vaga);
@@ -356,8 +367,9 @@ public class TelaRelatorio extends javax.swing.JDialog {
 
     private void btnCurriculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCurriculoActionPerformed
          cbxFiltro.removeAllItems();
-         cbxFiltro.addItem("CPF");
-         cbxFiltro.addItem("NOME");   
+         cbxFiltro.addItem("FORMAÇAO");
+         cbxFiltro.addItem("EXPERIÊNCIA");   
+         cbxFiltro.addItem("COMPETÊNCIA");   
         /* TelaRelatorioCandidato candidato  = new TelaRelatorioCandidato();
             pnlTipoFiltro.removeAll();
             pnlTipoFiltro.add(candidato );
@@ -368,8 +380,8 @@ public class TelaRelatorio extends javax.swing.JDialog {
 
     private void btnEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpresaActionPerformed
          cbxFiltro.removeAllItems();
-         cbxFiltro.addItem("CNPJ");
-         cbxFiltro.addItem("NOME FANTASIA");   
+         cbxFiltro.addItem("TIPO DE CONTRATO");
+         cbxFiltro.addItem("VAGAS EM ABERTO");   
         /* TelaRelatorioEmpresa empresa = new TelaRelatorioEmpresa();    
             pnlTipoFiltro.removeAll();
             pnlTipoFiltro.add(empresa);
@@ -454,6 +466,9 @@ public class TelaRelatorio extends javax.swing.JDialog {
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnVagas;
     private javax.swing.JComboBox cbxFiltro;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
