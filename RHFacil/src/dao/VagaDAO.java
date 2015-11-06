@@ -19,13 +19,13 @@ public class VagaDAO {
                         + " salario, carga_horaria, disponibilidade_viagem, vaga_pcd, cnh)"
                         + " VALUES(?,?,?,?,?,?,?,?)";
                 PreparedStatement sttm = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-                sttm.setInt(1, vaga.getTemporaria());
+                sttm.setBoolean(1, vaga.isTemporaria());
                 sttm.setString(2, vaga.getCargo());
                 sttm.setString(3, vaga.getFuncoesExercidas());
                 sttm.setFloat(4, vaga.getSalario());
                 sttm.setString(5, vaga.getCargaHoraria());
-                sttm.setInt(6, vaga.getDisponibilidadeViagem());
-                sttm.setInt(7, vaga.getVagaPcd());
+                sttm.setBoolean(6, vaga.isDisponibilidadeViagem());
+                sttm.setBoolean(7, vaga.isVagaPcd());
                 sttm.setString(8, vaga.getCnh());
                 sttm.executeUpdate();
                 ResultSet rs = sttm.getGeneratedKeys();
@@ -38,13 +38,13 @@ public class VagaDAO {
                 String query = "UPDATE produto SET temporaria=?,cargo=?,funcoes_exercidas=?,"
                         + "salario=?, carga_horaria=?, disponibilidade_viagem=?, vaga_pcd=? cnh=?";
                 PreparedStatement sttm = conn.prepareStatement(query);
-                sttm.setInt(1, vaga.getTemporaria());
+                sttm.setBoolean(1, vaga.isTemporaria());
                 sttm.setString(2, vaga.getCargo());
                 sttm.setString(3, vaga.getFuncoesExercidas());
                 sttm.setFloat(4, vaga.getSalario());
                 sttm.setString(5, vaga.getCargaHoraria());
-                sttm.setInt(6, vaga.getDisponibilidadeViagem());
-                sttm.setInt(7, vaga.getVagaPcd());
+                sttm.setBoolean(6, vaga.isDisponibilidadeViagem());
+                sttm.setBoolean(7, vaga.isVagaPcd());
                 sttm.setString(8, vaga.getCnh());
                 sttm.executeUpdate();
                 retorno = vaga;

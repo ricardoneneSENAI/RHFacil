@@ -2,13 +2,13 @@ package entity;
 
 public class Vaga {
     private Integer idVagas;
-    private Integer temporaria;
+    private Boolean temporaria;
     private String cargo;
     private String funcoesExercidas;
     private Float salario;
     private String cargaHoraria;
-    private Integer disponibilidadeViagem;
-    private Integer vagaPcd;
+    private Boolean disponibilidadeViagem;
+    private Boolean vagaPcd;
     private String cnh;
 
     public Integer getIdVagas() {
@@ -19,11 +19,11 @@ public class Vaga {
         this.idVagas = idVagas;
     }
 
-    public Integer getTemporaria() {
+    public Boolean isTemporaria() {
         return temporaria;
     }
 
-    public void setTemporaria(Integer temporaria) {
+    public void setTemporaria(Boolean temporaria) {
         this.temporaria = temporaria;
     }
 
@@ -59,19 +59,19 @@ public class Vaga {
         this.cargaHoraria = cargaHoraria;
     }
 
-    public Integer getDisponibilidadeViagem() {
+    public Boolean isDisponibilidadeViagem() {
         return disponibilidadeViagem;
     }
 
-    public void setDisponibilidadeViagem(Integer disponibilidadeViagem) {
+    public void setDisponibilidadeViagem(Boolean disponibilidadeViagem) {
         this.disponibilidadeViagem = disponibilidadeViagem;
     }
 
-    public Integer getVagaPcd() {
+    public Boolean isVagaPcd() {
         return vagaPcd;
     }
 
-    public void setVagaPcd(Integer vagaPcd) {
+    public void setVagaPcd(Boolean vagaPcd) {
         this.vagaPcd = vagaPcd;
     }
 
