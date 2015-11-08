@@ -4,11 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import entity.Usuarios;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 import javax.swing.JOptionPane;
-import view.TelaConsultaUsuario;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -19,6 +22,7 @@ public class UsuarioDAO {
     Connection conecta = null;
     ResultSet rs = null;
     PreparedStatement sttm = null;
+    public static ResultSet rsST;
 
     public void salvar(Usuarios usuario) {
 
@@ -144,17 +148,48 @@ public class UsuarioDAO {
     public void pesquisarUsuarios(Usuarios usuario) {
 
         conecta = ConnectionManager.getConnection();
-        String sql = "select idusuarios, nome, email, perfil from usuarios where nome like ?";
+        String sql = "select idusuarios, nome, email, perfil from usuarios where nome LIKE '%' ? '%'";
         try {
             sttm = conecta.prepareStatement(sql);
-            sttm.setString(1, "%" + usuario.getNomeUsuarios() + "%");
-            rs = sttm.executeQuery();
-            TelaConsultaUsuario.rsST = rs;
+            sttm.setString(1, usuario.getNomeUsuarios());
+            rsST = sttm.executeQuery();
 
         } catch (SQLException error) {
             JOptionPane.showMessageDialog(null, error);
         }
 
+    }
+
+    public static TableModel setaResultadojTabela(ResultSet rs) {
+        try {
+            ResultSetMetaData metaData = rs.getMetaData();
+            int numberOfColumns = metaData.getColumnCount();
+            Vector columnNames = new Vector();
+
+            // Obter os nomes de coluna
+            for (int column = 0; column < numberOfColumns; column++) {
+                columnNames.addElement(metaData.getColumnLabel(column + 1));
+            }
+
+            // Obter todas as linhas.
+            Vector rows = new Vector();
+
+            while (rs.next()) {
+                Vector newRow = new Vector();
+
+                for (int i = 1; i <= numberOfColumns; i++) {
+                    newRow.addElement(rs.getObject(i));
+                }
+
+                rows.addElement(newRow);
+            }
+
+            return new DefaultTableModel(rows, columnNames);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "erro ao carregar tabela!");
+            JOptionPane.showMessageDialog(null, e);
+            return null;
+        }
     }
 
 }

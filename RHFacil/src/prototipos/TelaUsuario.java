@@ -5,7 +5,6 @@
  */
 package prototipos;
 
-import view.*;
 import dao.UsuarioDAO;
 import entity.Usuarios;
 
@@ -24,7 +23,7 @@ public class TelaUsuario extends javax.swing.JDialog {
     public TelaUsuario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         if (status == false) {
-            initComponents();          
+            initComponents();
             setLocationRelativeTo(null);
         } else {
             initComponents();
@@ -197,7 +196,6 @@ public class TelaUsuario extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 

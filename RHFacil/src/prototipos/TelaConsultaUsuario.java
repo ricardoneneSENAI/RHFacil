@@ -5,10 +5,8 @@
  */
 package prototipos;
 
-import dao.DbUtils;
 import dao.UsuarioDAO;
 import entity.Usuarios;
-import java.sql.ResultSet;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -25,7 +23,6 @@ public class TelaConsultaUsuario extends javax.swing.JDialog {
     public static String nome = null;
     public static String email = null;
     public static String senha = null;
-    public static ResultSet rsST = null;
 
     /**
      * Creates new form TelaConsultaUsuario
@@ -56,32 +53,49 @@ public class TelaConsultaUsuario extends javax.swing.JDialog {
             model.setValueAt(listaUsuarios.get(i).getEmailUsuarios(), i, 2);
             model.setValueAt(listaUsuarios.get(i).getPerfilUsuarios(), i, 3);
 
-            //REDIMENCIONAR COLUNAS DA jTabela
-            getjTabela().getColumnModel().getColumn(0).setPreferredWidth(5);
-            getjTabela().getColumnModel().getColumn(1).setPreferredWidth(125);
-            getjTabela().getColumnModel().getColumn(2).setPreferredWidth(125);
-            getjTabela().getColumnModel().getColumn(3).setPreferredWidth(50);
-
+            formatarTabela();
         }
+
+    }
+
+    public void formatarTabela() {
+
+        //REDIMENCIONAR COLUNAS DA jTabela
+        getjTabela().getColumnModel().getColumn(0).setPreferredWidth(5);
+        getjTabela().getColumnModel().getColumn(1).setPreferredWidth(120);
+        getjTabela().getColumnModel().getColumn(2).setPreferredWidth(120);
+        getjTabela().getColumnModel().getColumn(3).setPreferredWidth(60);
+
+        //RENOMEAR COLUNAS DA jTabela
+        jTabela.getColumnModel().getColumn(0).setHeaderValue("ID");
+        jTabela.getColumnModel().getColumn(1).setHeaderValue("Nome");
+        jTabela.getColumnModel().getColumn(2).setHeaderValue("Email");
+        jTabela.getColumnModel().getColumn(3).setHeaderValue("Perfil");
 
     }
 
     public void excluir() {
 
-        int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?", "Excluir", JOptionPane.YES_NO_OPTION);
+        if (UsuarioSelecionado == 0) {
+            JOptionPane.showMessageDialog(null, "Selecione usuário na tabela!");
+        } else {
 
-        if (resposta == JOptionPane.YES_OPTION) {
+            int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?", "Excluir", JOptionPane.YES_NO_OPTION);
 
-            Usuarios usuarios = new Usuarios();
-            UsuarioDAO dao = new UsuarioDAO();
-            usuarios.setIdUsuarios(UsuarioSelecionado);
-            dao.deletar(usuarios);
-            AtualizaLista();
+            if (resposta == JOptionPane.YES_OPTION) {
 
-        } else if (resposta == JOptionPane.NO_OPTION) {
+                Usuarios usuarios = new Usuarios();
+                UsuarioDAO dao = new UsuarioDAO();
+                usuarios.setIdUsuarios(UsuarioSelecionado);
+                dao.deletar(usuarios);
+                AtualizaLista();
+
+            } else if (resposta == JOptionPane.NO_OPTION) {
+
+            }
 
         }
-
+        UsuarioSelecionado = 0;
     }
 
     public void pegarID_do_usuario() {
@@ -94,7 +108,7 @@ public class TelaConsultaUsuario extends javax.swing.JDialog {
 
         if (UsuarioSelecionado == 0) {
 
-            JOptionPane.showMessageDialog(null, "Para alterar usuario, selecione!");
+            JOptionPane.showMessageDialog(null, "Selecione usuário na tabela!");
 
         } else {
 
@@ -126,19 +140,11 @@ public class TelaConsultaUsuario extends javax.swing.JDialog {
 
         Usu.setNomeUsuarios(txtPesquisa_nome.getText());
         UsuDao.pesquisarUsuarios(Usu);
-        jTabela.setModel(DbUtils.resultSetToTableModel(rsST));
+        jTabela.setModel(UsuarioDAO.setaResultadojTabela(UsuarioDAO.rsST));
 
-        getjTabela().getColumnModel().getColumn(0).setPreferredWidth(5);
-        getjTabela().getColumnModel().getColumn(1).setPreferredWidth(125);
-        getjTabela().getColumnModel().getColumn(2).setPreferredWidth(125);
-        getjTabela().getColumnModel().getColumn(3).setPreferredWidth(50);
-
-        jTabela.getColumnModel().getColumn(0).setHeaderValue("ID");
-        jTabela.getColumnModel().getColumn(1).setHeaderValue("Nome");
-        jTabela.getColumnModel().getColumn(2).setHeaderValue("Email");
-        jTabela.getColumnModel().getColumn(3).setHeaderValue("Perfil");
-
+        formatarTabela();
         UsuarioSelecionado = 0;
+
     }
 
     /**
@@ -313,6 +319,7 @@ public class TelaConsultaUsuario extends javax.swing.JDialog {
         JFrame mainFrame = new JFrame();
         TelaUsuario tela = new TelaUsuario(mainFrame, true);
         tela.setVisible(true);
+        AtualizaLista();
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void jTabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabelaMouseClicked
