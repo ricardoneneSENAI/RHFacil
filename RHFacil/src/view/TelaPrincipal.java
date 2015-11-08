@@ -201,7 +201,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRelatoriosActionPerformed
 
     private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
-        // TODO add your handling code here:
+        TelaConsultaUsuario Tela = new TelaConsultaUsuario(this,true);
+        Tela.setVisible(true);
     }//GEN-LAST:event_btnUsuariosActionPerformed
 
     /**

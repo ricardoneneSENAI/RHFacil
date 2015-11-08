@@ -3,18 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package prototipos;
 
-import javax.swing.JDialog;
+import dao.DbUtils;
+import dao.UsuarioDAO;
+import entity.Usuarios;
+import java.sql.ResultSet;
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author willyam_evangelista
+ * @author Ederley Carvalho
  */
 public class TelaConsultaUsuario extends javax.swing.JDialog {
+
+    private int UsuarioSelecionado = 0;
+    public static int idUser;
+    public static String nome = null;
+    public static String email = null;
+    public static String senha = null;
+    public static ResultSet rsST = null;
 
     /**
      * Creates new form TelaConsultaUsuario
@@ -23,7 +34,111 @@ public class TelaConsultaUsuario extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-       
+        AtualizaLista();
+        txtPesquisa_nome.requestFocus();
+        //jTabela.changeSelection(jTabela.getColumnCount() - 2, 0, false, false);
+
+    }
+
+    public void AtualizaLista() {
+
+        UsuarioDAO DAO = new UsuarioDAO();
+        List<Usuarios> listaUsuarios = DAO.listar();
+        //pega o modelo da Tabela e coloca na variavel "model"
+        DefaultTableModel model = (DefaultTableModel) getjTabela().getModel();
+        //insere na tabela o número de linhas que a lista tem
+        model.setRowCount(listaUsuarios.size());
+
+        //laço para inserir os dados dos objetos na Tabela
+        for (int i = 0; i < listaUsuarios.size(); i++) {
+            model.setValueAt(listaUsuarios.get(i).getIdUsuarios(), i, 0);
+            model.setValueAt(listaUsuarios.get(i).getNomeUsuarios(), i, 1);
+            model.setValueAt(listaUsuarios.get(i).getEmailUsuarios(), i, 2);
+            model.setValueAt(listaUsuarios.get(i).getPerfilUsuarios(), i, 3);
+
+            //REDIMENCIONAR COLUNAS DA jTabela
+            getjTabela().getColumnModel().getColumn(0).setPreferredWidth(5);
+            getjTabela().getColumnModel().getColumn(1).setPreferredWidth(125);
+            getjTabela().getColumnModel().getColumn(2).setPreferredWidth(125);
+            getjTabela().getColumnModel().getColumn(3).setPreferredWidth(50);
+
+        }
+
+    }
+
+    public void excluir() {
+
+        int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?", "Excluir", JOptionPane.YES_NO_OPTION);
+
+        if (resposta == JOptionPane.YES_OPTION) {
+
+            Usuarios usuarios = new Usuarios();
+            UsuarioDAO dao = new UsuarioDAO();
+            usuarios.setIdUsuarios(UsuarioSelecionado);
+            dao.deletar(usuarios);
+            AtualizaLista();
+
+        } else if (resposta == JOptionPane.NO_OPTION) {
+
+        }
+
+    }
+
+    public void pegarID_do_usuario() {
+
+        int selecionar = getjTabela().getSelectedRow();
+        UsuarioSelecionado = (int) (getjTabela().getModel().getValueAt(selecionar, 0));
+    }
+
+    public void alterar_Usuario() {
+
+        if (UsuarioSelecionado == 0) {
+
+            JOptionPane.showMessageDialog(null, "Para alterar usuario, selecione!");
+
+        } else {
+
+            TelaUsuario.status = true;
+            TelaUsuario.idAtulizar = UsuarioSelecionado;
+
+            Usuarios Usu = new Usuarios();
+            UsuarioDAO UsuDao = new UsuarioDAO();
+            Usu.setIdUsuarios(UsuarioSelecionado);
+            Usu = UsuDao.detalhe(Usu);
+
+            nome = (Usu.getNomeUsuarios());
+            senha = (Usu.getSenhaUsuarios());
+            email = (Usu.getEmailUsuarios());
+
+            JFrame mainFrame = new JFrame();
+            TelaUsuario tela = new TelaUsuario(mainFrame, true);
+            tela.setVisible(true);
+            AtualizaLista();
+
+        }
+
+    }
+
+    public void pesquisaUser() {
+
+        Usuarios Usu = new Usuarios();
+        UsuarioDAO UsuDao = new UsuarioDAO();
+
+        Usu.setNomeUsuarios(txtPesquisa_nome.getText());
+        UsuDao.pesquisarUsuarios(Usu);
+        jTabela.setModel(DbUtils.resultSetToTableModel(rsST));
+
+        getjTabela().getColumnModel().getColumn(0).setPreferredWidth(5);
+        getjTabela().getColumnModel().getColumn(1).setPreferredWidth(125);
+        getjTabela().getColumnModel().getColumn(2).setPreferredWidth(125);
+        getjTabela().getColumnModel().getColumn(3).setPreferredWidth(50);
+
+        jTabela.getColumnModel().getColumn(0).setHeaderValue("ID");
+        jTabela.getColumnModel().getColumn(1).setHeaderValue("Nome");
+        jTabela.getColumnModel().getColumn(2).setHeaderValue("Email");
+        jTabela.getColumnModel().getColumn(3).setHeaderValue("Perfil");
+
+        UsuarioSelecionado = 0;
     }
 
     /**
@@ -37,20 +152,25 @@ public class TelaConsultaUsuario extends javax.swing.JDialog {
 
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtPesquisa_nome = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTabela = new javax.swing.JTable();
         btnVoltar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
         btnNovo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(500, 400));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
         jLabel1.setText("Nome:");
+
+        txtPesquisa_nome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPesquisa_nomeKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -60,7 +180,7 @@ public class TelaConsultaUsuario extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1)
+                .addComponent(txtPesquisa_nome)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -69,22 +189,41 @@ public class TelaConsultaUsuario extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPesquisa_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Nome", "Senha", "CPF", "E-mail", "Perfil"
+                "ID", "Nome", "E-mail", "Perfil"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTabela.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTabelaMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTabela);
+        if (jTabela.getColumnModel().getColumnCount() > 0) {
+            jTabela.getColumnModel().getColumn(0).setResizable(false);
+            jTabela.getColumnModel().getColumn(1).setResizable(false);
+            jTabela.getColumnModel().getColumn(2).setResizable(false);
+            jTabela.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/buttons/Back.png"))); // NOI18N
         btnVoltar.setText("Voltar");
@@ -162,21 +301,27 @@ public class TelaConsultaUsuario extends javax.swing.JDialog {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        JOptionPane.showConfirmDialog(this, "Deseja Excluir?", "Excluir", JOptionPane.OK_CANCEL_OPTION);
+        excluir();
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        JFrame mainFrame = new JFrame();
-        TelaUsuario tela = new TelaUsuario(mainFrame, true);
-        tela.setVisible(true);
-        
+        alterar_Usuario();
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
+        TelaUsuario.idAtulizar = 0;
         JFrame mainFrame = new JFrame();
         TelaUsuario tela = new TelaUsuario(mainFrame, true);
         tela.setVisible(true);
     }//GEN-LAST:event_btnNovoActionPerformed
+
+    private void jTabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabelaMouseClicked
+        pegarID_do_usuario();
+    }//GEN-LAST:event_jTabelaMouseClicked
+
+    private void txtPesquisa_nomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisa_nomeKeyReleased
+        pesquisaUser();
+    }//GEN-LAST:event_txtPesquisa_nomeKeyReleased
 
     /**
      * @param args the command line arguments
@@ -204,6 +349,7 @@ public class TelaConsultaUsuario extends javax.swing.JDialog {
             java.util.logging.Logger.getLogger(TelaConsultaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -228,7 +374,35 @@ public class TelaConsultaUsuario extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable jTabela;
+    private javax.swing.JTextField txtPesquisa_nome;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the txtPesquisa_nome
+     */
+    public javax.swing.JTextField getTxtPesquisa_nome() {
+        return txtPesquisa_nome;
+    }
+
+    /**
+     * @param txtPesquisa_nome the txtPesquisa_nome to set
+     */
+    public void setTxtPesquisa_nome(javax.swing.JTextField txtPesquisa_nome) {
+        this.txtPesquisa_nome = txtPesquisa_nome;
+    }
+
+    /**
+     * @return the jTabela
+     */
+    public javax.swing.JTable getjTabela() {
+        return jTabela;
+    }
+
+    /**
+     * @param jTabela the jTabela to set
+     */
+    public void setjTabela(javax.swing.JTable jTabela) {
+        this.jTabela = jTabela;
+    }
 }
