@@ -1,14 +1,15 @@
 package entity;
 
 import java.util.Date;
+import java.util.List;
 
-public class Curriculo {    
+public class Curriculo {
+
     private Integer id;
     private String nome;
     private Date dtNascimento;
-    private String objetivo; 
-    private Character cnh;
-    private Character deficiencia;
+    private String objetivo;
+    private String cnh;
     private String cep;
     private String cidade;
     private String uf;
@@ -16,19 +17,22 @@ public class Curriculo {
     private String rua;
     private Integer numero;
     private String complemento;
-   
-       
+    private List<TipoDeficiencia> deficiencia;
+    private List<Telefone> telefone;
+    private List<String> email;
+    private List<Competencia> competencia;
+    private List<Experiencia> experiencia;
+    private List<Formacao> formacao;
 
     public Curriculo() {
     }
 
-    public Curriculo(Integer id, String nome, Date dtNascimento, String objetivo, Character cnh, Character deficiencia, String cep, String cidade, String uf, String bairro, String rua, Integer numero, String complemento) {
+    public Curriculo(Integer id, String nome, Date dtNascimento, String objetivo, String cnh, String cep, String cidade, String uf, String bairro, String rua, Integer numero, String complemento, List<TipoDeficiencia> deficiencia, List<Telefone> telefone, List<String> email, List<Competencia> competencia, List<Experiencia> experiencia, List<Formacao> formacao) {
         this.id = id;
         this.nome = nome;
         this.dtNascimento = dtNascimento;
         this.objetivo = objetivo;
         this.cnh = cnh;
-        this.deficiencia = deficiencia;
         this.cep = cep;
         this.cidade = cidade;
         this.uf = uf;
@@ -36,8 +40,15 @@ public class Curriculo {
         this.rua = rua;
         this.numero = numero;
         this.complemento = complemento;
+        this.deficiencia = deficiencia;
+        this.telefone = telefone;
+        this.email = email;
+        this.competencia = competencia;
+        this.experiencia = experiencia;
+        this.formacao = formacao;
     }
-
+    
+    
     public Integer getId() {
         return id;
     }
@@ -70,20 +81,12 @@ public class Curriculo {
         this.objetivo = objetivo;
     }
 
-    public Character getCnh() {
+    public String getCnh() {
         return cnh;
     }
 
-    public void setCnh(Character cnh) {
+    public void setCnh(String cnh) {
         this.cnh = cnh;
-    }
-
-    public Character getDeficiencia() {
-        return deficiencia;
-    }
-
-    public void setDeficiencia(Character deficiencia) {
-        this.deficiencia = deficiencia;
     }
 
     public String getCep() {
@@ -142,6 +145,56 @@ public class Curriculo {
         this.complemento = complemento;
     }
 
+    public List<TipoDeficiencia> getDeficiencia() {
+        return deficiencia;
+    }
+
+    public void setDeficiencia(List<TipoDeficiencia> deficiencia) {
+        this.deficiencia = deficiencia;
+    }
+
+    public List<Telefone> getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(List<Telefone> telefone) {
+        this.telefone = telefone;
+    }
+
+    public List<String> getEmail() {
+        return email;
+    }
+
+    public void setEmail(List<String> email) {
+        this.email = email;
+    }
+
+    public List<Competencia> getCompetencia() {
+        return competencia;
+    }
+
+    public void setCompetencia(List<Competencia> competencia) {
+        this.competencia = competencia;
+    }
+
+    public List<Experiencia> getExperiencia() {
+        return experiencia;
+    }
+
+    public void setExperiencia(List<Experiencia> experiencia) {
+        this.experiencia = experiencia;
+    }
+
+    public List<Formacao> getFormacao() {
+        return formacao;
+    }
+
+    public void setFormacao(List<Formacao> formacao) {
+        this.formacao = formacao;
+    }
+
     
-                        
+    
+    
 }
+

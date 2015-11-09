@@ -55,26 +55,14 @@ public class TelaCurriculo extends javax.swing.JDialog {
         modelTelefone.addElement(ftfTelefone.getText());
         ListTelefone.setModel(modelTelefone);
     }
-    
+
     public void EmailListModel() {
         modelEmail = new DefaultListModel();
-         for (int i = 0; i < ListEmail.getModel().getSize(); i++) {
+        for (int i = 0; i < ListEmail.getModel().getSize(); i++) {
             modelEmail.addElement(ListEmail.getModel().getElementAt(i));
         }
         modelEmail.addElement(txtEmail.getText());
         ListEmail.setModel(modelEmail);
-    }
-    
-     public Boolean verificaCampo() {
-        Boolean emBranco = null;
-        String telefone;
-       
-        telefone = ftfTelefone.getText().replaceAll("[ ()-]", "");
-        System.out.println(telefone);
-        if (telefone.equals("")) {     
-            JOptionPane.showMessageDialog(null, "aaaaa");
-        }
-        return emBranco;
     }
 
     /**
@@ -125,10 +113,11 @@ public class TelaCurriculo extends javax.swing.JDialog {
         jScrollPane9 = new javax.swing.JScrollPane();
         ListExperiencia = new javax.swing.JList();
         jPanel7 = new javax.swing.JPanel();
-        jPanel15 = new javax.swing.JPanel();
+        jPanel14 = new javax.swing.JPanel();
         btnAddCompetencia = new javax.swing.JButton();
+        btnAlterarCompetencia = new javax.swing.JButton();
         btnExcluirCompetencia = new javax.swing.JButton();
-        jScrollPane11 = new javax.swing.JScrollPane();
+        jScrollPane10 = new javax.swing.JScrollPane();
         ListCompetencia = new javax.swing.JList();
         jLabel9 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
@@ -454,7 +443,7 @@ public class TelaCurriculo extends javax.swing.JDialog {
 
         jTabbedPane1.addTab("Experiência", jPanel10);
 
-        jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         btnAddCompetencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/buttons/Create.png"))); // NOI18N
         btnAddCompetencia.addActionListener(new java.awt.event.ActionListener() {
@@ -463,32 +452,42 @@ public class TelaCurriculo extends javax.swing.JDialog {
             }
         });
 
+        btnAlterarCompetencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/buttons/Modify.png"))); // NOI18N
+        btnAlterarCompetencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarCompetenciaActionPerformed(evt);
+            }
+        });
+
         btnExcluirCompetencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/buttons/Erase.png"))); // NOI18N
 
-        jScrollPane11.setViewportView(ListCompetencia);
+        jScrollPane10.setViewportView(ListCompetencia);
 
-        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
-        jPanel15.setLayout(jPanel15Layout);
-        jPanel15Layout.setHorizontalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel15Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAddCompetencia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAlterarCompetencia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnExcluirCompetencia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
-        jPanel15Layout.setVerticalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel15Layout.createSequentialGroup()
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel15Layout.createSequentialGroup()
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel14Layout.createSequentialGroup()
                         .addComponent(btnAddCompetencia)
-                        .addGap(35, 35, 35)
+                        .addGap(4, 4, 4)
+                        .addComponent(btnAlterarCompetencia)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnExcluirCompetencia)))
                 .addContainerGap())
         );
@@ -499,14 +498,14 @@ public class TelaCurriculo extends javax.swing.JDialog {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(19, 19, 19))
         );
 
@@ -720,7 +719,7 @@ public class TelaCurriculo extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(ftfCep)
+                        .addComponent(ftfCep, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -852,21 +851,20 @@ public class TelaCurriculo extends javax.swing.JDialog {
                     .addComponent(rbnCnhNao))
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(10, 10, 10)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnSalvar)
-                            .addComponent(btnVoltar)))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSalvar)
+                    .addComponent(btnVoltar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -961,13 +959,8 @@ public class TelaCurriculo extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_rbnCnhSimActionPerformed
 
-    private void btnAddCompetenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCompetenciaActionPerformed
-        TelaCompetencia tc = new TelaCompetencia(null, true);
-    }//GEN-LAST:event_btnAddCompetenciaActionPerformed
-
     private void btnAddTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTelefoneActionPerformed
-        verificaCampo();
-        TelefoneListModel();  
+        TelefoneListModel();
         ftfTelefone.setText(null);
 
     }//GEN-LAST:event_btnAddTelefoneActionPerformed
@@ -976,9 +969,9 @@ public class TelaCurriculo extends javax.swing.JDialog {
         if (txtEmail.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Campo e-mail em branco!");
         } else {
-        
-        EmailListModel();
-       txtEmail.setText(null);
+
+            EmailListModel();
+            txtEmail.setText(null);
         }
     }//GEN-LAST:event_btnAddEmailActionPerformed
 
@@ -998,6 +991,14 @@ public class TelaCurriculo extends javax.swing.JDialog {
             modelEmail.remove(ListEmail.getSelectedIndex());
         }
     }//GEN-LAST:event_btnExcluirEmailActionPerformed
+
+    private void btnAddCompetenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCompetenciaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddCompetenciaActionPerformed
+
+    private void btnAlterarCompetenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarCompetenciaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAlterarCompetenciaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1237,6 +1238,10 @@ public class TelaCurriculo extends javax.swing.JDialog {
         return txtRua;
     }
 
+    public JButton getBtnAlterarCompetencia() {
+        return btnAlterarCompetencia;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList ListCompetencia;
@@ -1249,6 +1254,7 @@ public class TelaCurriculo extends javax.swing.JDialog {
     private javax.swing.JButton btnAddExperiencia;
     private javax.swing.JButton btnAddFormacao;
     private javax.swing.JButton btnAddTelefone;
+    private javax.swing.JButton btnAlterarCompetencia;
     private javax.swing.JButton btnAlterarEmail;
     private javax.swing.JButton btnAlterarExperiencia;
     private javax.swing.JButton btnAlterarFormacao;
@@ -1291,14 +1297,14 @@ public class TelaCurriculo extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane9;

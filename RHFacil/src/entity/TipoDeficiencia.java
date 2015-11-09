@@ -1,10 +1,10 @@
 package entity;
 
-public enum TipoDeficiencia {
-    AUDITIVA(1,"Auditiva"),
-    FISICA(2,"Física"),
-    MENTAL(3,"Mental"),
-    VISUAL(4,"Visual");
+public enum TipoDeficiencia {    
+    FISICA(1,"Física"),
+    VISUAL(2,"Visual"),    
+    AUDITIVA(3,"Auditiva"),
+    INTELECTUAL(4,"Intelectual");
     
     private int tipo;
     private String descricao;
