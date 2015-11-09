@@ -5,10 +5,14 @@
  */
 package view;
 
+import javax.swing.ButtonGroup;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
@@ -18,29 +22,59 @@ import javax.swing.JTextField;
  */
 public class TelaCurriculo extends javax.swing.JDialog {
 
-    /**
-     * Creates new form TelaCurriculo
-     */
+    DefaultListModel modelTelefone;
+    DefaultListModel modelEmail;
+
     public TelaCurriculo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
     }
-    
-    public void isEnable (boolean a){
+
+    public void isEnable(boolean a) {
         ckbAuditiva.setEnabled(a);
         ckbFisica.setEnabled(a);
         ckbMental.setEnabled(a);
-        ckbVisual.setEnabled(a);         
+        ckbVisual.setEnabled(a);
     }
-    
-     public void isEnableCnh (boolean a){
+
+    public void isEnableCnh(boolean a) {
         ckbA.setEnabled(a);
         rbnB.setEnabled(a);
         rbnC.setEnabled(a);
-        rbnD.setEnabled(a);         
+        rbnD.setEnabled(a);
         rbnE.setEnabled(a);
+    }
+
+    public void TelefoneListModel() {
+        modelTelefone = new DefaultListModel();
+        for (int i = 0; i < ListTelefone.getModel().getSize(); i++) {
+            modelTelefone.addElement(ListTelefone.getModel().getElementAt(i));
+        }
+        modelTelefone.addElement(ftfTelefone.getText());
+        ListTelefone.setModel(modelTelefone);
+    }
+    
+    public void EmailListModel() {
+        modelEmail = new DefaultListModel();
+         for (int i = 0; i < ListEmail.getModel().getSize(); i++) {
+            modelEmail.addElement(ListEmail.getModel().getElementAt(i));
+        }
+        modelEmail.addElement(txtEmail.getText());
+        ListEmail.setModel(modelEmail);
+    }
+    
+     public Boolean verificaCampo() {
+        Boolean emBranco = null;
+        String telefone;
+       
+        telefone = ftfTelefone.getText().replaceAll("[ ()-]", "");
+        System.out.println(telefone);
+        if (telefone.equals("")) {     
+            JOptionPane.showMessageDialog(null, "aaaaa");
+        }
+        return emBranco;
     }
 
     /**
@@ -91,11 +125,11 @@ public class TelaCurriculo extends javax.swing.JDialog {
         jScrollPane9 = new javax.swing.JScrollPane();
         ListExperiencia = new javax.swing.JList();
         jPanel7 = new javax.swing.JPanel();
-        jPanel14 = new javax.swing.JPanel();
+        jPanel15 = new javax.swing.JPanel();
         btnAddCompetencia = new javax.swing.JButton();
-        jScrollPane10 = new javax.swing.JScrollPane();
+        btnExcluirCompetencia = new javax.swing.JButton();
+        jScrollPane11 = new javax.swing.JScrollPane();
         ListCompetencia = new javax.swing.JList();
-        btnExcluirExperiencia1 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
         ckbA = new javax.swing.JCheckBox();
@@ -223,8 +257,18 @@ public class TelaCurriculo extends javax.swing.JDialog {
         jLabel6.setText("Telefone:");
 
         btnAddTelefone.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/buttons/Create.png"))); // NOI18N
+        btnAddTelefone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddTelefoneActionPerformed(evt);
+            }
+        });
 
         btnExcluirTelefone.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/buttons/Erase.png"))); // NOI18N
+        btnExcluirTelefone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirTelefoneActionPerformed(evt);
+            }
+        });
 
         btnAlterarTelefone.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/buttons/Modify.png"))); // NOI18N
 
@@ -410,7 +454,7 @@ public class TelaCurriculo extends javax.swing.JDialog {
 
         jTabbedPane1.addTab("Experiência", jPanel10);
 
-        jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         btnAddCompetencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/buttons/Create.png"))); // NOI18N
         btnAddCompetencia.addActionListener(new java.awt.event.ActionListener() {
@@ -419,34 +463,34 @@ public class TelaCurriculo extends javax.swing.JDialog {
             }
         });
 
-        jScrollPane10.setViewportView(ListCompetencia);
+        btnExcluirCompetencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/buttons/Erase.png"))); // NOI18N
 
-        btnExcluirExperiencia1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/buttons/Erase.png"))); // NOI18N
+        jScrollPane11.setViewportView(ListCompetencia);
 
-        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
-        jPanel14.setLayout(jPanel14Layout);
-        jPanel14Layout.setHorizontalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel14Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 483, Short.MAX_VALUE)
+                .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAddCompetencia, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnExcluirExperiencia1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAddCompetencia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnExcluirCompetencia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
-        jPanel14Layout.setVerticalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel14Layout.createSequentialGroup()
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel14Layout.createSequentialGroup()
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel15Layout.createSequentialGroup()
                         .addComponent(btnAddCompetencia)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnExcluirExperiencia1))
-                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(35, 35, 35)
+                        .addComponent(btnExcluirCompetencia)))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -455,15 +499,15 @@ public class TelaCurriculo extends javax.swing.JDialog {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(19, 19, 19))
         );
 
         jTabbedPane1.addTab("Competências", jPanel7);
@@ -551,8 +595,18 @@ public class TelaCurriculo extends javax.swing.JDialog {
         jLabel7.setText("E-Mail:");
 
         btnAddEmail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/buttons/Create.png"))); // NOI18N
+        btnAddEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddEmailActionPerformed(evt);
+            }
+        });
 
         btnExcluirEmail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/buttons/Erase.png"))); // NOI18N
+        btnExcluirEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirEmailActionPerformed(evt);
+            }
+        });
 
         btnAlterarEmail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/buttons/Modify.png"))); // NOI18N
 
@@ -645,34 +699,37 @@ public class TelaCurriculo extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtComplemento))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtRua)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtBairro)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtRua, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel13)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addGap(24, 24, 24)
-                        .addComponent(ftfCep, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ftfCep)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbUf, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(cbUf, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -746,8 +803,8 @@ public class TelaCurriculo extends javax.swing.JDialog {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNome)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(ftfDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -817,15 +874,15 @@ public class TelaCurriculo extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void rbnDeficienciaSimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbnDeficienciaSimActionPerformed
-          if (rbnDeficienciaSim.isSelected()) {
-            isEnable(true);                   
-        }         
-              
+        if (rbnDeficienciaSim.isSelected()) {
+            isEnable(true);
+        }
+
     }//GEN-LAST:event_rbnDeficienciaSimActionPerformed
 
     private void rbnDeficienciaNaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbnDeficienciaNaoActionPerformed
         if (rbnDeficienciaNao.isSelected()) {
-            isEnable(false);  
+            isEnable(false);
             ckbAuditiva.setSelected(false);
             ckbFisica.setSelected(false);
             ckbMental.setSelected(false);
@@ -850,36 +907,24 @@ public class TelaCurriculo extends javax.swing.JDialog {
     }//GEN-LAST:event_ckbAActionPerformed
 
     private void rbnBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbnBActionPerformed
-        rbnC.setSelected(false);
-        rbnD.setSelected(false);
-        rbnE.setSelected(false);
+
     }//GEN-LAST:event_rbnBActionPerformed
 
     private void rbnDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbnDActionPerformed
-        rbnB.setSelected(false);
-        rbnC.setSelected(false);
-        rbnE.setSelected(false);
+
     }//GEN-LAST:event_rbnDActionPerformed
 
     private void rbnCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbnCActionPerformed
-        rbnB.setSelected(false);
-        rbnD.setSelected(false);
-        rbnE.setSelected(false);
+
     }//GEN-LAST:event_rbnCActionPerformed
 
     private void rbnEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbnEActionPerformed
-        rbnC.setSelected(false);
-        rbnD.setSelected(false);
-        rbnB.setSelected(false);
+
     }//GEN-LAST:event_rbnEActionPerformed
 
     private void ftfDataNascimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftfDataNascimentoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ftfDataNascimentoActionPerformed
-
-    private void btnAddCompetenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCompetenciaActionPerformed
-        TelaCompetencia tc = new TelaCompetencia(null, true);
-    }//GEN-LAST:event_btnAddCompetenciaActionPerformed
 
     private void btnAddFormacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddFormacaoActionPerformed
         TelaFormacao tf = new TelaFormacao(null, true);
@@ -902,21 +947,57 @@ public class TelaCurriculo extends javax.swing.JDialog {
     }//GEN-LAST:event_cbUfActionPerformed
 
     private void rbnCnhNaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbnCnhNaoActionPerformed
-           if (rbnCnhNao.isSelected()) {
-            isEnableCnh(false);  
+        if (rbnCnhNao.isSelected()) {
+            isEnableCnh(false);
             ckbA.setSelected(false);
-            rbnB.setSelected(false);
-            rbnC.setSelected(false);
-            rbnD.setSelected(false);
-            rbnE.setSelected(false);
+            btnGrpCnh.clearSelection();
+
         }
     }//GEN-LAST:event_rbnCnhNaoActionPerformed
 
     private void rbnCnhSimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbnCnhSimActionPerformed
-         if (rbnCnhSim.isSelected()) {
-            isEnableCnh(true);                   
-        }   
+        if (rbnCnhSim.isSelected()) {
+            isEnableCnh(true);
+        }
     }//GEN-LAST:event_rbnCnhSimActionPerformed
+
+    private void btnAddCompetenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCompetenciaActionPerformed
+        TelaCompetencia tc = new TelaCompetencia(null, true);
+    }//GEN-LAST:event_btnAddCompetenciaActionPerformed
+
+    private void btnAddTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTelefoneActionPerformed
+        verificaCampo();
+        TelefoneListModel();  
+        ftfTelefone.setText(null);
+
+    }//GEN-LAST:event_btnAddTelefoneActionPerformed
+
+    private void btnAddEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddEmailActionPerformed
+        if (txtEmail.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Campo e-mail em branco!");
+        } else {
+        
+        EmailListModel();
+       txtEmail.setText(null);
+        }
+    }//GEN-LAST:event_btnAddEmailActionPerformed
+
+    private void btnExcluirTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirTelefoneActionPerformed
+        if (ListTelefone.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(null, "Sem telefone selecionado!");
+        } else {
+            modelTelefone.remove(ListTelefone.getSelectedIndex());
+        }
+
+    }//GEN-LAST:event_btnExcluirTelefoneActionPerformed
+
+    private void btnExcluirEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirEmailActionPerformed
+        if (ListEmail.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(null, "Sem email selecionado!");
+        } else {
+            modelEmail.remove(ListEmail.getSelectedIndex());
+        }
+    }//GEN-LAST:event_btnExcluirEmailActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1088,7 +1169,6 @@ public class TelaCurriculo extends javax.swing.JDialog {
         return txtEmail;
     }
 
-    
     public JTextField getTxtNome() {
         return txtNome;
     }
@@ -1104,8 +1184,59 @@ public class TelaCurriculo extends javax.swing.JDialog {
     public JTextField getTxtObjetivo() {
         return txtObjetivo;
     }
-    
-    
+
+    public JButton getBtnExcluirCompetencia() {
+        return btnExcluirCompetencia;
+    }
+
+    public ButtonGroup getBtnGrpCnh() {
+        return btnGrpCnh;
+    }
+
+    public ButtonGroup getBtnGrpCnh1() {
+        return btnGrpCnh1;
+    }
+
+    public ButtonGroup getBtnGrpDeficiencia() {
+        return btnGrpDeficiencia;
+    }
+
+    public JComboBox getCbUf() {
+        return cbUf;
+    }
+
+    public JFormattedTextField getFtfCep() {
+        return ftfCep;
+    }
+
+    public JRadioButton getRbnCnhNao() {
+        return rbnCnhNao;
+    }
+
+    public JRadioButton getRbnCnhSim() {
+        return rbnCnhSim;
+    }
+
+    public JTextField getTxtBairro() {
+        return txtBairro;
+    }
+
+    public JTextField getTxtCidade() {
+        return txtCidade;
+    }
+
+    public JTextField getTxtComplemento() {
+        return txtComplemento;
+    }
+
+    public JTextField getTxtNumero() {
+        return txtNumero;
+    }
+
+    public JTextField getTxtRua() {
+        return txtRua;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList ListCompetencia;
@@ -1122,9 +1253,9 @@ public class TelaCurriculo extends javax.swing.JDialog {
     private javax.swing.JButton btnAlterarExperiencia;
     private javax.swing.JButton btnAlterarFormacao;
     private javax.swing.JButton btnAlterarTelefone;
+    private javax.swing.JButton btnExcluirCompetencia;
     private javax.swing.JButton btnExcluirEmail;
     private javax.swing.JButton btnExcluirExperiencia;
-    private javax.swing.JButton btnExcluirExperiencia1;
     private javax.swing.JButton btnExcluirFormacao;
     private javax.swing.JButton btnExcluirTelefone;
     private javax.swing.ButtonGroup btnGrpCnh;
@@ -1160,14 +1291,14 @@ public class TelaCurriculo extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane9;
