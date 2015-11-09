@@ -93,7 +93,7 @@ public class VagaDAO {
     
     public Vaga delete(Vaga vaga){
         try{
-            String queryDelete = "delete from usuarios where idusuarios = ?";
+            String queryDelete = "delete from vaga where idVagas = ?";
 
             sttm = conn.prepareStatement(queryDelete);
             sttm.setInt(1, vaga.getIdVagas());
