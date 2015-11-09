@@ -1,11 +1,14 @@
 package dao;
 
+import entity.Empresas;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import entity.Vaga;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 public class VagaDAO {
@@ -13,6 +16,7 @@ public class VagaDAO {
     Connection conn = null;
     Vaga retorno = null;
     PreparedStatement sttm = null;
+    ResultSet rs = null;
     
     public Vaga salvar(Vaga vaga) {        
         try {
@@ -85,6 +89,53 @@ public class VagaDAO {
             JOptionPane.showMessageDialog(null, "Não foi possível salvar: "+ e.getMessage()); 
         }
         return retorno;
+    }
+    
+    public Vaga delete(Vaga vaga){
+        try{
+            String queryDelete = "delete from usuarios where idusuarios = ?";
+
+            sttm = conn.prepareStatement(queryDelete);
+            sttm.setInt(1, vaga.getIdVagas());
+
+            sttm.execute();
+            conn.close();
+
+            JOptionPane.showMessageDialog(null, "Excluido com sucesso!");
+        }catch (Exception e) {
+            e.printStackTrace();                        
+            JOptionPane.showMessageDialog(null, "Não foi possível excluir: "+ e.getMessage()); 
+        }
+        return retorno;
+    }
+    
+    public List<Vaga> listar() {
+        List<Vaga> lista = new ArrayList<Vaga>();
+        try{
+            String querySelect = "Select empresa, cargo, salario, temporaria from vaga";
+            
+            conn = ConnectionManager.getConnection();
+            
+            sttm = conn.prepareStatement(querySelect);
+            rs = sttm.executeQuery();
+            
+            while (rs.next()) {
+                Vaga vaga = new Vaga();
+                Empresas empresa = new Empresas();
+                empresa.setNome_fantasia(rs.getString("nome_fantasia"));
+                vaga.setCargo(rs.getString("cargo"));
+                vaga.setSalario(rs.getFloat("salario"));
+                vaga.setTemporaria(rs.getBoolean("temporaria"));
+                
+                lista.add(vaga);
+            }
+            
+        }catch (Exception e) {
+            e.printStackTrace();                        
+            JOptionPane.showMessageDialog(null, "Não foi possível listar: "+ e.getMessage()); 
+        }
+        
+        return lista;
     }
     
 }
