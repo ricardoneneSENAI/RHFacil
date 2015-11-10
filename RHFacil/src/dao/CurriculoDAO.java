@@ -20,17 +20,34 @@ public class CurriculoDAO {
             PreparedStatement stmt = null;
             Connection conn = ConnectionManager.getConnection();
 
-            /*ARRUMAR QUERY*/String QUERY_INSERT = "insert into curriculo (?, ?, ?) values (?, ?, ?)";
-            /*ARRUMAR QUERY*/String QUERY_UPDATE = "update curriculo set ? = ?, ? = ?, ? = ? where idcurriculo = ? ";
-
+            /*ARRUMAR BANCO*/ String QUERY_INSERT = "insert into curriculo (idCurriculos, nome, rua, numero, cep, "
+                    + "cidade, uf, bairro, complemento, data_nascimento, tipo_pcd, cnh) "
+                    + "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            /*ARRUMAR BANCO*/ String QUERY_UPDATE = "update curriculo set idCurriculos = ?, nome = ?, rua = ?, "
+                    + "numero = ?, cep = ?, cidade = ?, uf = ?, bairro = ?, complemento = ?,"
+                    + "data_nascimento = ?, tipo_pcd, cnh = ?"
+                    + "where idcurriculo = ? ";
+            
+                  //CAMPOS DO BD
+                  /*idCurriculos, nome, rua, numero, cep, cidade, uf, bairro, complemento, data_nascimento, tipo_pcd, cnh  */
+            
             if (curriculo.getId() == null) {
                 
                 stmt = conn.prepareStatement(QUERY_INSERT, Statement.RETURN_GENERATED_KEYS);
-                /*ARRUMAR QUERY
-                stmt.setString(1, curriculo.get?());
-                stmt.setString(2, curriculo.get?());
-                stmt.setString(3, curriculo.get?());
-                */
+                stmt.setInt(1, curriculo.getId());
+                stmt.setString(2, curriculo.getNome());
+                //stmt.setDate(3, curriculo.getDtNascimento());
+                stmt.setString(4, curriculo.getObjetivo());
+                //stmt.setCharacter(5, curriculo.getCnh());
+                //stmt.setCharacter(6, curriculo.getDeficiencia());
+                stmt.setString(7, curriculo.getCep());
+                stmt.setString(8, curriculo.getCidade());
+                stmt.setString(9, curriculo.getUf());
+                stmt.setString(10, curriculo.getBairro());
+                stmt.setString(11, curriculo.getRua());
+                stmt.setInt(12, curriculo.getNumero());
+                stmt.setString(13, curriculo.getComplemento());
+                
                 stmt.executeUpdate();
                 ResultSet rs = stmt.getGeneratedKeys();
                 
@@ -42,11 +59,21 @@ public class CurriculoDAO {
             } else {
                 
                 stmt = conn.prepareStatement(QUERY_UPDATE);
-                /*ARRUMAR QUERY
-                stmt.setString(1, curriculo.get?());
-                stmt.setString(2, curriculo.get?());
-                stmt.setString(3, curriculo.get?());
-                */
+                stmt.setInt(1, curriculo.getId());
+                stmt.setString(2, curriculo.getNome());
+                //stmt.setDate(3, curriculo.getDtNascimento());
+                stmt.setString(4, curriculo.getObjetivo());
+                //stmt.setCharacter(5, curriculo.getCnh());
+                //stmt.setCharacter(6, curriculo.getDeficiencia());
+                stmt.setString(7, curriculo.getCep());
+                stmt.setString(8, curriculo.getCidade());
+                stmt.setString(9, curriculo.getUf());
+                stmt.setString(10, curriculo.getBairro());
+                stmt.setString(11, curriculo.getRua());
+                stmt.setInt(12, curriculo.getNumero());
+                stmt.setString(13, curriculo.getComplemento());
+                
+                
                 stmt.executeUpdate();
                 resultado = curriculo.getId();
             }
@@ -71,7 +98,7 @@ public class CurriculoDAO {
             PreparedStatement stmt = null;
             Connection conn = ConnectionManager.getConnection();
 
-            /*ARRUMAR QUERY*/String QUERY_DELETE = "delete from curriculo where idcurriculo = ?";
+            String QUERY_DELETE = "delete from curriculo where idcurriculo = ?";
 
             stmt = conn.prepareStatement(QUERY_DELETE);
             stmt.setInt(1, curriculo.getId());
@@ -109,11 +136,19 @@ public class CurriculoDAO {
             while (rs.next()) {
                 curriculo = new Curriculo();
                 curriculo.setId(rs.getInt("idCurriculo"));
-                /*ARRUMAR QUERY
-                curriculo.setNome(rs.getString("?"));
-                curriculo.setEmail(rs.getString("?"));
-                curriculo.setTelefone(rs.getString("?"));
-                */
+                stmt.setInt(1, curriculo.getId());
+                stmt.setString(2, curriculo.getNome());
+                //stmt.setDate(3, curriculo.getDtNascimento());
+                stmt.setString(4, curriculo.getObjetivo());
+                //stmt.setCharacter(5, curriculo.getCnh());
+                //stmt.setCharacter(6, curriculo.getDeficiencia());
+                stmt.setString(7, curriculo.getCep());
+                stmt.setString(8, curriculo.getCidade());
+                stmt.setString(9, curriculo.getUf());
+                stmt.setString(10, curriculo.getBairro());
+                stmt.setString(11, curriculo.getRua());
+                stmt.setInt(12, curriculo.getNumero());
+                stmt.setString(13, curriculo.getComplemento());
             }
             conn.close();
 
@@ -142,11 +177,19 @@ public class CurriculoDAO {
             while (rs.next()) {
                 Curriculo curriculo = new Curriculo();
                 curriculo.setId(rs.getInt("idCurriculo"));
-                /*ARRUMAR QUERY
-                curriculo.setNome(rs.getString("?"));
-                curriculo.setEmail(rs.getString("?"));
-                curriculo.setTelefone(rs.getString("?"));
-                */
+                stmt.setInt(1, curriculo.getId());
+                stmt.setString(2, curriculo.getNome());
+                //stmt.setDate(3, curriculo.getDtNascimento());
+                stmt.setString(4, curriculo.getObjetivo());
+                //stmt.setCharacter(5, curriculo.getCnh());
+                //stmt.setCharacter(6, curriculo.getDeficiencia());
+                stmt.setString(7, curriculo.getCep());
+                stmt.setString(8, curriculo.getCidade());
+                stmt.setString(9, curriculo.getUf());
+                stmt.setString(10, curriculo.getBairro());
+                stmt.setString(11, curriculo.getRua());
+                stmt.setInt(12, curriculo.getNumero());
+                stmt.setString(13, curriculo.getComplemento());
                 lista.add(curriculo);
             }
             conn.close();

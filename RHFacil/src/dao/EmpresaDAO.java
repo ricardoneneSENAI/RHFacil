@@ -5,7 +5,7 @@
  */
 package dao;
 
-import entity.Empresa;
+import entity.Empresas;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -18,17 +18,17 @@ import java.sql.Statement;
  */
 public class EmpresaDAO {
 
-    public Empresa salvar(Empresa empresa) {
-        Empresa retorno = null;
+    public Empresas salvar(Empresas empresa) {
+        Empresas retorno = null;
         try {
             
             Connection conn = ConnectionManager.getConnection();
-            if (empresa.getIdEmpresa()== null) {
+            if (empresa.getIdEmpresas()== null) {
                 String query = "insert into empresa "
                         + "(idEmpresa, nomeEmpresa, razaoSocial, CNPJ, inscricaoEstadual, logradouro, "
                         + "numero, complemento, CEP, bairro, UF, cidade) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 PreparedStatement sttm = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-                sttm.setInt(1, empresa.getIdEmpresa());
+                sttm.setInt(1, empresa.getIdEmpresas());
                 sttm.setString(2, empresa.getNomeEmpresa());
                 sttm.setString(3, empresa.getRazaoSocial());
                 sttm.setString(4, empresa.getCNPJ());
@@ -43,7 +43,7 @@ public class EmpresaDAO {
                 sttm.executeUpdate();
                 ResultSet rs = sttm.getGeneratedKeys();
                 if (rs.next()) {
-                    empresa.setIdEmpresa(rs.getInt(1));
+                    empresa.setIdEmpresas(rs.getInt(1));
                 }
                 retorno = empresa;
                 sttm.close();
@@ -52,7 +52,7 @@ public class EmpresaDAO {
                         + "(idEmpresa, nomeEmpresa, razaoSocial, CNPJ, inscricaoEstadual, logradouro, "
                         + "numero, complemento, CEP, bairro, UF, cidade) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 PreparedStatement sttm = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-                sttm.setInt(1, empresa.getIdEmpresa());
+                sttm.setInt(1, empresa.getIdEmpresas());
                 sttm.setString(2, empresa.getNomeEmpresa());
                 sttm.setString(3, empresa.getRazaoSocial());
                 sttm.setString(4, empresa.getCNPJ());
