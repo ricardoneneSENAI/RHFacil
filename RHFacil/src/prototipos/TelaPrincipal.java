@@ -5,6 +5,8 @@
  */
 package prototipos;
 
+import view.TelaPesquisarEmpresa;
+
 /**
  *
  * @author ricardo.nene

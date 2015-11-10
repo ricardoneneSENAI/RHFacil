@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package prototipos;
+package view;
 
 import javax.swing.JOptionPane;
+import prototipos.TelaEmpresa;
 
 /**
  *
@@ -90,13 +91,13 @@ public class TelaPesquisarEmpresa extends javax.swing.JDialog {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Razão Social", "CNPJ", "Contato", "Telefone", "E-mail", "Contrato"
+                "Razão Social", "Nome Fantasia", "CNPJ", "Contrato"
             }
         ));
         jScrollPane2.setViewportView(jTable1);
@@ -160,7 +161,7 @@ public class TelaPesquisarEmpresa extends javax.swing.JDialog {
                         .addComponent(btnVoltar))
                     .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 689, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -20,7 +20,7 @@ package entity;
     private String bairro;
     private String uf;
     private String cidade;
-    private String contrato;
+    private TipoContrato contrato;
     private String data_inicio;
     private String data_fim;
 
@@ -120,11 +120,11 @@ package entity;
         this.cidade = cidade;
     }
 
-    public String getContrato() {
+    public TipoContrato getContrato() {
         return contrato;
     }
 
-    public void setContrato(String contrato) {
+    public void setContrato(TipoContrato contrato) {
         this.contrato = contrato;
     }
 
@@ -144,5 +144,6 @@ package entity;
         this.data_fim = data_fim;
     }
 
+    
    
     }

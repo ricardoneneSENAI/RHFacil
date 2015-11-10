@@ -18,54 +18,62 @@ import java.sql.Statement;
  */
 public class EmpresaDAO {
 
-    public Empresas salvar(Empresas empresa) {
+    public Empresas salvar(Empresas empresas) {
         Empresas retorno = null;
         try {
             
             Connection conn = ConnectionManager.getConnection();
-            if (empresa.getIdEmpresas()== null) {
-                String query = "insert into empresa "
-                        + "(idEmpresa, nomeEmpresa, razaoSocial, CNPJ, inscricaoEstadual, logradouro, "
-                        + "numero, complemento, CEP, bairro, UF, cidade) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            if (empresas.getIdEmpresas()== null) {
+                String query = "insert into empresas "
+                        + "(nome_fantasia, razao_social, cnpj, inscricao_estadual, logradouro, "
+                        + "numero, complemento, cep, bairro, uf, cidade, contrato, data_inicio, data_fim) values"
+                        + " (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 PreparedStatement sttm = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-                sttm.setInt(1, empresa.getIdEmpresas());
-                sttm.setString(2, empresa.getNomeEmpresa());
-                sttm.setString(3, empresa.getRazaoSocial());
-                sttm.setString(4, empresa.getCNPJ());
-                sttm.setString(5, empresa.getInscricaoEstadual());
-                sttm.setString(6, empresa.getLogradouro());
-                sttm.setString(7, empresa.getNumero());
-                sttm.setString(8, empresa.getComplemento());
-                sttm.setString(9, empresa.getCEP());
-                sttm.setString(10, empresa.getBairro());
-                sttm.setString(11, empresa.getUF());
-                sttm.setString(12, empresa.getCidade());
+              //  sttm.setInt(1, empresas.getIdEmpresas());
+                sttm.setString(1, empresas.getNome_fantasia());
+                sttm.setString(2, empresas.getRazao_social());
+                sttm.setString(3, empresas.getCnpj());
+                sttm.setString(4, empresas.getInscricao_estadual());
+                sttm.setString(5, empresas.getLogradouro());
+                sttm.setString(6, empresas.getNumero());
+                sttm.setString(7, empresas.getComplemento());
+                sttm.setString(8, empresas.getCep());
+                sttm.setString(9, empresas.getBairro());
+                sttm.setString(10, empresas.getUf());
+                sttm.setString(11, empresas.getCidade());
+                sttm.setInt(12, empresas.getContrato().getId());
+                sttm.setString(13, empresas.getData_inicio());
+                sttm.setString(14, empresas.getData_fim());
                 sttm.executeUpdate();
                 ResultSet rs = sttm.getGeneratedKeys();
                 if (rs.next()) {
-                    empresa.setIdEmpresas(rs.getInt(1));
+                    empresas.setIdEmpresas(rs.getInt(1));
                 }
-                retorno = empresa;
+                retorno = empresas;
                 sttm.close();
             } else {
-                String query = "insert into empresa "
-                        + "(idEmpresa, nomeEmpresa, razaoSocial, CNPJ, inscricaoEstadual, logradouro, "
-                        + "numero, complemento, CEP, bairro, UF, cidade) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                String query = "insert into empresas "
+                        + "(nome_fantasia, razao_social, cnpj, inscricao_estadual, logradouro, "
+                        + "numero, complemento, cep, bairro, uf, cidade, contrato, data_inicio, data_fim) values "
+                        + "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 PreparedStatement sttm = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-                sttm.setInt(1, empresa.getIdEmpresas());
-                sttm.setString(2, empresa.getNomeEmpresa());
-                sttm.setString(3, empresa.getRazaoSocial());
-                sttm.setString(4, empresa.getCNPJ());
-                sttm.setString(5, empresa.getInscricaoEstadual());
-                sttm.setString(6, empresa.getLogradouro());
-                sttm.setString(7, empresa.getNumero());
-                sttm.setString(8, empresa.getComplemento());
-                sttm.setString(9, empresa.getCEP());
-                sttm.setString(10, empresa.getBairro());
-                sttm.setString(11, empresa.getUF());
-                sttm.setString(12, empresa.getCidade());
+               // sttm.setInt(1, empresas.getIdEmpresas());
+                sttm.setString(1, empresas.getNome_fantasia());
+                sttm.setString(2, empresas.getRazao_social());
+                sttm.setString(3, empresas.getCnpj());
+                sttm.setString(4, empresas.getInscricao_estadual());
+                sttm.setString(5, empresas.getLogradouro());
+                sttm.setString(6, empresas.getNumero());
+                sttm.setString(7, empresas.getComplemento());
+                sttm.setString(8, empresas.getCep());
+                sttm.setString(9, empresas.getBairro());
+                sttm.setString(10, empresas.getUf());
+                sttm.setString(11, empresas.getCidade());
+                sttm.setInt(12, empresas.getContrato().getId());
+                sttm.setString(13, empresas.getData_inicio());
+                sttm.setString(14, empresas.getData_fim());
                 sttm.executeUpdate();
-                retorno = empresa;
+                retorno = empresas;
                 sttm.close();
             }
             conn.close();
