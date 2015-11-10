@@ -1,5 +1,7 @@
 package entity;
 
+import java.util.List;
+
 public class Vaga {
     private Integer idVagas;
     private Boolean temporaria;
@@ -10,7 +12,16 @@ public class Vaga {
     private Boolean disponibilidadeViagem;
     private Boolean vagaPcd;
     private String cnh;
+    private List<TipoDeficiencia> tipoDeficiencia;
 
+    public List<TipoDeficiencia> getTipoDeficiencia() {
+        return tipoDeficiencia;
+    }
+
+    public void setTipoDeficiencia(List<TipoDeficiencia> tipoDeficiencia) {
+        this.tipoDeficiencia = tipoDeficiencia;
+    }
+    
     public Integer getIdVagas() {
         return idVagas;
     }
