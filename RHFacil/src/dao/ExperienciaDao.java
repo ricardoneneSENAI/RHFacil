@@ -79,7 +79,8 @@ public class ExperienciaDao {
                 stmt.executeUpdate();
                 resultado = experiencia.getId();
             }
-
+            
+            stmt.close();
             conn.close();
 
             JOptionPane.showMessageDialog(null, "Os dados da experiência foram salvos com sucesso!");
@@ -109,6 +110,7 @@ public class ExperienciaDao {
             stmt.setInt(2, experiencia.getIdCurriculo());            
 
             stmt.executeUpdate();
+            stmt.close();
             conn.close();
 
             resultado = true;
@@ -150,7 +152,7 @@ public class ExperienciaDao {
                 stmt.setString(7, experiencia.getCargo());
                 stmt.setString(8, experiencia.getCargo()); 
             }
-            
+            stmt.close();
             conn.close();
 
         } catch (Exception ex) {
@@ -189,6 +191,7 @@ public class ExperienciaDao {
                 stmt.setString(8, experiencia.getCargo()); 
                 lista.add(experiencia);
             }
+            stmt.close();
             conn.close();
 
         } catch (Exception ex) {
