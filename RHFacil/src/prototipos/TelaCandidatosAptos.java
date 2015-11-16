@@ -6,6 +6,12 @@
 
 package prototipos;
 
+import dao.CandidatoAptoDAO;
+import dao.EmpresaDAO;
+import entity.Empresas;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author joao_souza_lopes
@@ -19,8 +25,19 @@ public class TelaCandidatosAptos extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        Teste();
     }
-
+    public void Teste (){
+        Empresas e = new Empresas();
+        
+        CandidatoAptoDAO cd =new CandidatoAptoDAO();
+        List<Empresas> listaEmpresas = cd.listar();
+        
+        JOptionPane.showMessageDialog(null, listaEmpresas);
+        
+        cbEmpresaCandidato.setSelectedItem(listaEmpresas);
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,31 +50,31 @@ public class TelaCandidatosAptos extends javax.swing.JDialog {
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnVoltarCand = new javax.swing.JButton();
+        btnAvancarCand = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
-        jButton2 = new javax.swing.JButton();
+        cbEmpresaCandidato = new javax.swing.JComboBox();
+        btnVerCandidatos = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
-        jButton1 = new javax.swing.JButton();
+        btnVoltarCandidatoApto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Listar Vagas", 0, 0, new java.awt.Font("Tahoma", 3, 12))); // NOI18N
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Listar Vagas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 3, 12))); // NOI18N
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Cargo", "Salario", "Carga Horaria"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -79,27 +96,36 @@ public class TelaCandidatosAptos extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/buttons/Raise.png"))); // NOI18N
+        btnVoltarCand.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/buttons/Raise.png"))); // NOI18N
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/buttons/Down.png"))); // NOI18N
+        btnAvancarCand.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/buttons/Down.png"))); // NOI18N
 
         jLabel2.setText("Empresa:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbEmpresaCandidato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbEmpresaCandidatoActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Ver Candidatos");
+        btnVerCandidatos.setText("Ver Candidatos");
+        btnVerCandidatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerCandidatosActionPerformed(evt);
+            }
+        });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Candidatos Aptos", 0, 0, new java.awt.Font("Tahoma", 3, 12))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Candidatos Aptos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 3, 12))); // NOI18N
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nome", "Objetivo", "Telefone", "E-mail", "Formação"
             }
         ));
         jScrollPane3.setViewportView(jTable2);
@@ -121,7 +147,7 @@ public class TelaCandidatosAptos extends javax.swing.JDialog {
                 .addGap(301, 301, 301))
         );
 
-        jList1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Agendar entrevista", 0, 0, new java.awt.Font("Tahoma", 3, 12))); // NOI18N
+        jList1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Agendar entrevista", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 3, 12))); // NOI18N
         jList1.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
@@ -129,11 +155,11 @@ public class TelaCandidatosAptos extends javax.swing.JDialog {
         });
         jScrollPane4.setViewportView(jList1);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/buttons/Back.png"))); // NOI18N
-        jButton1.setText("Voltar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnVoltarCandidatoApto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/buttons/Back.png"))); // NOI18N
+        btnVoltarCandidatoApto.setText("Voltar");
+        btnVoltarCandidatoApto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnVoltarCandidatoAptoActionPerformed(evt);
             }
         });
 
@@ -146,7 +172,7 @@ public class TelaCandidatosAptos extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(btnVoltarCandidatoApto)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -155,19 +181,19 @@ public class TelaCandidatosAptos extends javax.swing.JDialog {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(cbEmpresaCandidato, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(15, 15, 15))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(188, 188, 188)
-                        .addComponent(jButton4)
+                        .addComponent(btnAvancarCand)
                         .addGap(31, 31, 31)
-                        .addComponent(jButton3))
+                        .addComponent(btnVoltarCand))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(180, 180, 180)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnVerCandidatos, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 176, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -176,31 +202,45 @@ public class TelaCandidatosAptos extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbEmpresaCandidato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addComponent(btnVerCandidatos)
                 .addGap(14, 14, 14)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(btnVoltarCand, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnAvancarCand, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(btnVoltarCandidatoApto)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnVoltarCandidatoAptoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarCandidatoAptoActionPerformed
         dispose();
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnVoltarCandidatoAptoActionPerformed
+
+    private void btnVerCandidatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerCandidatosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerCandidatosActionPerformed
+
+    private void cbEmpresaCandidatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbEmpresaCandidatoActionPerformed
+        Empresas e = new Empresas();
+        
+        CandidatoAptoDAO cd =new CandidatoAptoDAO();
+        List<Empresas> listaEmpresas = cd.listar();
+        
+        cbEmpresaCandidato.setSelectedItem(listaEmpresas);
+        
+    }//GEN-LAST:event_cbEmpresaCandidatoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -245,11 +285,11 @@ public class TelaCandidatosAptos extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JButton btnAvancarCand;
+    private javax.swing.JButton btnVerCandidatos;
+    private javax.swing.JButton btnVoltarCand;
+    private javax.swing.JButton btnVoltarCandidatoApto;
+    private javax.swing.JComboBox cbEmpresaCandidato;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
