@@ -33,11 +33,13 @@ public class VagaDAO {
     }
     
     public Vaga insert(Vaga vaga){
+        Empresas empresa = new Empresas();
+        
         conn = ConnectionManager.getConnection();
         try{            
             String queryInsert = "INSERT INTO VAGAS(temporaria, cargo, funcoes_exercidas,"
-                        + " salario, carga_horaria, disponibilidade_viagem, vaga_pcd, cnh)"
-                        + " VALUES(?,?,?,?,?,?,?,?)";
+                        + " salario, carga_horaria, disponibilidade_viagem, vaga_pcd, cnh, Empresas_idEmpresas)"
+                        + " VALUES(?,?,?,?,?,?,?,?,?)";
             
             sttm = conn.prepareStatement(queryInsert, Statement.RETURN_GENERATED_KEYS);
             sttm.setBoolean(1, vaga.isTemporaria());
@@ -48,6 +50,7 @@ public class VagaDAO {
             sttm.setBoolean(6, vaga.isDisponibilidadeViagem());
             sttm.setBoolean(7, vaga.isVagaPcd());
             sttm.setString(8, vaga.getCnh());
+            sttm.setInt(9, 1);
             sttm.executeUpdate();
             ResultSet rs = sttm.getGeneratedKeys();
             if (rs.next()) {
