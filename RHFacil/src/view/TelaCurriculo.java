@@ -993,7 +993,8 @@ public class TelaCurriculo extends javax.swing.JDialog {
     }//GEN-LAST:event_btnExcluirEmailActionPerformed
 
     private void btnAddCompetenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCompetenciaActionPerformed
-        // TODO add your handling code here:
+        TelaCompetencia tc = new TelaCompetencia(null, true);
+                
     }//GEN-LAST:event_btnAddCompetenciaActionPerformed
 
     private void btnAlterarCompetenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarCompetenciaActionPerformed

@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package prototipos;
 
+import dao.VagaDAO;
+import entity.Vaga;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -32,12 +33,12 @@ public class TelaCadastroVaga extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         setVisible(true);
     }
-    
-    public void isEnable (boolean a){
+
+    public void isEnable(boolean a) {
         ckbAuditiva.setEnabled(a);
         ckbFisica.setEnabled(a);
         ckbMental.setEnabled(a);
-        ckbVisual.setEnabled(a);         
+        ckbVisual.setEnabled(a);
     }
 
     /**
@@ -162,6 +163,7 @@ public class TelaCadastroVaga extends javax.swing.JDialog {
         jLabel11.setText("Temporária:");
 
         btnGrpTemporaria.add(rbnTemporariaSim);
+        rbnTemporariaSim.setSelected(true);
         rbnTemporariaSim.setText("SIM");
         rbnTemporariaSim.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -218,6 +220,7 @@ public class TelaCadastroVaga extends javax.swing.JDialog {
         });
 
         btnGrpViagem.add(rbnViagemNao);
+        rbnViagemNao.setSelected(true);
         rbnViagemNao.setText("NÃO");
 
         jPanel5.setBorder(new javax.swing.border.SoftBevelBorder(0));
@@ -353,6 +356,7 @@ public class TelaCadastroVaga extends javax.swing.JDialog {
         });
 
         btnGrpPcd.add(rbnPcdNao);
+        rbnPcdNao.setSelected(true);
         rbnPcdNao.setText("NÃO");
         rbnPcdNao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -572,7 +576,7 @@ public class TelaCadastroVaga extends javax.swing.JDialog {
 
     private void rbnPcdNaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbnPcdNaoActionPerformed
         if (rbnPcdNao.isSelected()) {
-            isEnable(false);  
+            isEnable(false);
             ckbAuditiva.setSelected(false);
             ckbFisica.setSelected(false);
             ckbMental.setSelected(false);
@@ -614,8 +618,8 @@ public class TelaCadastroVaga extends javax.swing.JDialog {
 
     private void rbnPcdSimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbnPcdSimActionPerformed
         if (rbnPcdSim.isSelected()) {
-            isEnable(true);                   
-        }         
+            isEnable(true);
+        }
     }//GEN-LAST:event_rbnPcdSimActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -623,7 +627,7 @@ public class TelaCadastroVaga extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JOptionPane.showMessageDialog(null, "Vaga salva com sucesso!");
+        salvar();        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -795,8 +799,64 @@ public class TelaCadastroVaga extends javax.swing.JDialog {
     public JFormattedTextField getTxtSalario() {
         return txtSalario;
     }
-    
-    
+
+    private void salvar() {
+        Vaga vaga = new Vaga();
+        vaga.setTemporaria(isVagaTemporaria());
+        vaga.setCargo(txtCargo.getText());
+        vaga.setFuncoesExercidas(txtFuncao.getText());
+        vaga.setSalario(Float.parseFloat(txtSalario.getText()));
+        vaga.setCargaHoraria(txtCargaHoraria.getText());
+        vaga.setDisponibilidadeViagem(isCandidatoDisponivelViagem());
+        vaga.setVagaPcd(isCandidatoPCD());
+        vaga.setCnh(verificaCNH());
+
+        VagaDAO vagaDao = new VagaDAO();
+
+        vagaDao.insert(vaga);
+    }
+
+    private Boolean isVagaTemporaria() {
+        if (btnGrpTemporaria.equals("SIM")) {
+            return true;
+        }
+        return false;
+    }
+
+    private Boolean isCandidatoDisponivelViagem() {
+        if (btnGrpViagem.equals("SIM")) {
+            return true;
+        }
+        return false;
+    }
+
+    private Boolean isCandidatoPCD() {
+        if (btnGrpPcd.equals("SIM")) {
+            return true;
+        }
+        return false;        
+    }
+
+    private String verificaCNH() {
+        String textoCNH = "";
+
+        if (ckbA.isSelected()) {
+            textoCNH = "A";
+        }
+
+        if (rbnB.isSelected()) {
+            textoCNH = textoCNH + "B";
+        } else if (rbnC.isSelected()) {
+            textoCNH = textoCNH + "C";
+        } else if (rbnD.isSelected()) {
+            textoCNH = textoCNH + "D";
+        } else if(rbnE.isSelected()){
+            textoCNH = textoCNH + "E";
+        }
+
+        return textoCNH;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionarBeneficios;
