@@ -29,7 +29,8 @@ public class CurriculoDAO {
                     + "where idcurriculo = ? ";
             
                   //CAMPOS DO BD
-                  /*idCurriculos, nome, rua, numero, cep, cidade, uf, bairro, complemento, data_nascimento, tipo_pcd, cnh  */
+                  /*idCurriculos, nome, rua, numero, cep, cidade, uf, 
+                    bairro, complemento, data_nascimento, tipo_pcd, cnh  */
             
             if (curriculo.getId() == null) {
                 
@@ -156,7 +157,7 @@ public class CurriculoDAO {
             
             ex.printStackTrace();
             curriculo = null;
-            JOptionPane.showMessageDialog(null, "Não foi localizar os dados do currículo selecionado!");
+            JOptionPane.showMessageDialog(null, "Não foi possível localizar os dados do currículo selecionado!");
             
         }
         
@@ -197,7 +198,7 @@ public class CurriculoDAO {
         } catch (Exception ex) {
             
             ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Não foi localizar os curriculos cadastrados!");
+            JOptionPane.showMessageDialog(null, "Não foi possível localizar os curriculos cadastrados!");
             
         } finally {
             

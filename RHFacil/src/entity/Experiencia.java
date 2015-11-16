@@ -13,7 +13,8 @@ import java.util.Date;
  */
 public class Experiencia {
     
-    private Integer id;
+    private Integer id; 
+    private Integer idCurriculo;
     private String empresa;
     private Date dtInicio;
     private Date dtFim;
@@ -42,6 +43,13 @@ public class Experiencia {
         this.id = id;
     }
 
+    public Integer getIdCurriculo() {
+        return idCurriculo;
+    }
+    public void setIdCurriculo(Integer idCurriculo) {
+        this.idCurriculo = idCurriculo;
+    }
+    
     public String getEmpresa() {
         return empresa;
     }
