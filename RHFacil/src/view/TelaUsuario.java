@@ -7,6 +7,7 @@ package view;
 
 import dao.UsuarioDAO;
 import entity.Usuarios;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,43 +15,45 @@ import entity.Usuarios;
  */
 public class TelaUsuario extends javax.swing.JDialog {
 
-    public static boolean status;
-    public static int idAtulizar = 0;
+    private Usuarios usuario;
 
     /**
      * Creates new form TelaUsuario1
      */
-    public TelaUsuario(java.awt.Frame parent, boolean modal) {
+    public TelaUsuario(java.awt.Frame parent, boolean modal, Usuarios usuario) {
         super(parent, modal);
-        if (status == false) {
-            initComponents();          
-            setLocationRelativeTo(null);
+        initComponents();
+        setLocationRelativeTo(null);
+        if (usuario == null) {
+            this.usuario = new Usuarios();
         } else {
-            initComponents();
-            setLocationRelativeTo(null);
-            alterarUser();
+            this.usuario = usuario;
+            setarValor();
         }
 
     }
 
-    private void gravarUsuario() {
+    private void setarValor() {
 
-        Usuarios EntUse = new Usuarios();
-        EntUse.setNomeUsuarios(getTxtNome().getText());
-        EntUse.setSenhaUsuarios(getTxtSenha().getText());
-        EntUse.setEmailUsuarios(getTxtEmail().getText());
-        EntUse.setPerfilUsuarios(cbPerfil.getSelectedItem().toString());
-
-        EntUse.setIdUsuarios(idAtulizar);
-        UsuarioDAO UseDAO = new UsuarioDAO();
-        UseDAO.salvar(EntUse);
+        txtNome.setText(this.usuario.getNomeUsuarios());
+        txtSenha.setText(this.usuario.getSenhaUsuarios());
+        txtEmail.setText(this.usuario.getEmailUsuarios());
+        cbPerfil.setSelectedItem(this.usuario.getPerfilUsuarios());
 
     }
 
-    private void alterarUser() {
-        txtNome.setText(TelaConsultaUsuario.nome);
-        txtSenha.setText(TelaConsultaUsuario.senha);
-        txtEmail.setText(TelaConsultaUsuario.email);
+    private void gravarUsuario() {
+        UsuarioDAO UsuDAO = new UsuarioDAO();
+        usuario.setNomeUsuarios(getTxtNome().getText());
+        usuario.setSenhaUsuarios(getTxtSenha().getText());
+        usuario.setEmailUsuarios(getTxtEmail().getText());
+        usuario.setPerfilUsuarios(cbPerfil.getSelectedItem().toString());
+
+        if (usuario.getIdUsuarios() == null || usuario.getIdUsuarios() == 0) {
+            UsuDAO.salvar(usuario);
+        } else {
+            UsuDAO.atualizar(usuario);
+        }
     }
 
     /**
@@ -110,11 +113,6 @@ public class TelaUsuario extends javax.swing.JDialog {
         cbPerfil.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
         cbPerfil.setMinimumSize(new java.awt.Dimension(6, 20));
         cbPerfil.setPreferredSize(new java.awt.Dimension(6, 20));
-        cbPerfil.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbPerfilActionPerformed(evt);
-            }
-        });
 
         txtNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -208,10 +206,6 @@ public class TelaUsuario extends javax.swing.JDialog {
         gravarUsuario();
     }//GEN-LAST:event_btnSalvarActionPerformed
 
-    private void cbPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPerfilActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbPerfilActionPerformed
-
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeActionPerformed
@@ -250,7 +244,7 @@ public class TelaUsuario extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                TelaUsuario dialog = new TelaUsuario(new javax.swing.JFrame(), true);
+                TelaUsuario dialog = new TelaUsuario(new javax.swing.JFrame(), true, null);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

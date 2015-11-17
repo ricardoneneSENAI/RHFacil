@@ -4,15 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import entity.Usuarios;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-
 
 /**
  *
@@ -23,36 +17,43 @@ public class UsuarioDAO {
     Connection conecta = null;
     ResultSet rs = null;
     PreparedStatement sttm = null;
-    public static ResultSet rsST;
 
     public void salvar(Usuarios usuario) {
-
-        usuario.setIdUsuarios(usuario.getIdUsuarios());
         try {
             conecta = ConnectionManager.getConnection();
             String SQL_INSERT = "insert into usuarios(nome, senha, email, perfil) values (?,?,?,?)";
+
+            sttm = conecta.prepareStatement(SQL_INSERT);
+            sttm.setString(1, usuario.getNomeUsuarios());
+            sttm.setString(2, usuario.getSenhaUsuarios());
+            sttm.setString(3, usuario.getEmailUsuarios());
+            sttm.setString(4, usuario.getPerfilUsuarios());
+
+            JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
+            sttm.executeUpdate();
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "erro ao gravar no banco de dados!");
+        }
+
+    }
+
+    public void atualizar(Usuarios usuario) {
+
+        try {
+            conecta = ConnectionManager.getConnection();
             String SQL_UPDATE = "update usuarios set nome = ?, senha = ?, email = ?, perfil = ? where idusuarios = ?";
 
-            if (usuario.getIdUsuarios() == null || usuario.getIdUsuarios() == 0) {
-                sttm = conecta.prepareStatement(SQL_INSERT);
+            sttm = conecta.prepareStatement(SQL_UPDATE);
+            sttm.setString(1, usuario.getNomeUsuarios());
+            sttm.setString(2, usuario.getSenhaUsuarios());
+            sttm.setString(3, usuario.getEmailUsuarios());
+            sttm.setString(4, usuario.getPerfilUsuarios());
 
-                sttm.setString(1, usuario.getNomeUsuarios());
-                sttm.setString(2, usuario.getSenhaUsuarios());
-                sttm.setString(3, usuario.getEmailUsuarios());
-                sttm.setString(4, usuario.getPerfilUsuarios());
+            sttm.setInt(5, usuario.getIdUsuarios());
 
-                JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
-            } else {
-                sttm = conecta.prepareStatement(SQL_UPDATE);
+            JOptionPane.showMessageDialog(null, "Atualizado com sucesso!");
 
-                sttm.setString(1, usuario.getNomeUsuarios());
-                sttm.setString(2, usuario.getSenhaUsuarios());
-                sttm.setString(3, usuario.getEmailUsuarios());
-                sttm.setString(4, usuario.getPerfilUsuarios());
-
-                sttm.setInt(5, usuario.getIdUsuarios());
-                JOptionPane.showMessageDialog(null, "Atualizado com sucesso!");
-            }
             sttm.executeUpdate();
 
         } catch (Exception ex) {
@@ -73,6 +74,37 @@ public class UsuarioDAO {
             ResultSet rs = null;
 
             sttm = conecta.prepareStatement(QUERY_DETALHE);
+            rs = sttm.executeQuery();
+
+            while (rs.next()) {
+                Usuarios usuario = new Usuarios();
+                usuario.setIdUsuarios(rs.getInt("idusuarios"));
+                usuario.setNomeUsuarios(rs.getString("nome"));
+                usuario.setEmailUsuarios(rs.getString("email"));
+                usuario.setPerfilUsuarios(rs.getString("perfil"));
+                lista.add(usuario);
+            }
+            //conecta.close();
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "erro ao listar!");
+        }
+        return lista;
+    }
+
+    public List<Usuarios> burcarPorNome(String nome) {
+
+        List<Usuarios> lista = new ArrayList<Usuarios>();
+
+        try {
+            String QUERY_DETALHE = "select idusuarios, nome, email, perfil from usuarios where nome LIKE '%' ? '%'";
+
+            conecta = ConnectionManager.getConnection();
+
+            ResultSet rs = null;
+
+            sttm = conecta.prepareStatement(QUERY_DETALHE);
+            sttm.setString(1, nome);
             rs = sttm.executeQuery();
 
             while (rs.next()) {
@@ -120,7 +152,7 @@ public class UsuarioDAO {
         try {
             conecta = ConnectionManager.getConnection();
 
-            String QUERY_DETALHE = "SELECT nome, senha, email from usuarios where idusuarios = ?";
+            String QUERY_DETALHE = "SELECT idusuarios, nome, senha, email, perfil from usuarios where idusuarios = ?";
 
             sttm = conecta.prepareStatement(QUERY_DETALHE);
             sttm.setInt(1, usuario.getIdUsuarios());
@@ -131,9 +163,11 @@ public class UsuarioDAO {
 
                 retorno = new Usuarios();
 
+                retorno.setIdUsuarios(rs.getInt("idusuarios"));
                 retorno.setNomeUsuarios(rs.getString("nome"));
                 retorno.setSenhaUsuarios(rs.getString("senha"));
                 retorno.setEmailUsuarios(rs.getString("email"));
+                retorno.setPerfilUsuarios(rs.getString("perfil"));
 
             }
 
@@ -144,53 +178,6 @@ public class UsuarioDAO {
             return retorno;
         }
 
-    }
-
-    public void pesquisarUsuarios(Usuarios usuario) {
-
-        conecta = ConnectionManager.getConnection();
-        String sql = "select idusuarios, nome, email, perfil from usuarios where nome LIKE '%' ? '%'";
-        try {
-            sttm = conecta.prepareStatement(sql);
-            sttm.setString(1, usuario.getNomeUsuarios());
-            rsST = sttm.executeQuery();
-
-        } catch (SQLException error) {
-            JOptionPane.showMessageDialog(null, error);
-        }
-
-    }
-
-    public static TableModel setaResultadojTabela(ResultSet rs) {
-        try {
-            ResultSetMetaData metaData = rs.getMetaData();
-            int numberOfColumns = metaData.getColumnCount();
-            Vector columnNames = new Vector();
-
-            // Obter os nomes de coluna
-            for (int column = 0; column < numberOfColumns; column++) {
-                columnNames.addElement(metaData.getColumnLabel(column + 1));
-            }
-
-            // Obter todas as linhas.
-            Vector rows = new Vector();
-
-            while (rs.next()) {
-                Vector newRow = new Vector();
-
-                for (int i = 1; i <= numberOfColumns; i++) {
-                    newRow.addElement(rs.getObject(i));
-                }
-
-                rows.addElement(newRow);
-            }
-
-            return new DefaultTableModel(rows, columnNames);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "erro ao carregar tabela!");
-            JOptionPane.showMessageDialog(null, e);
-            return null;
-        }
     }
 
 }

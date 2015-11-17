@@ -7,7 +7,6 @@ package view;
 
 import dao.UsuarioDAO;
 import entity.Usuarios;
-import java.sql.ResultSet;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -19,12 +18,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TelaConsultaUsuario extends javax.swing.JDialog {
 
-    private int UsuarioSelecionado = 0;
-    public static int idUser;
-    public static String nome = null;
-    public static String email = null;
-    public static String senha = null;
-    public static ResultSet rsST;
+    private UsuarioDAO dao = new UsuarioDAO();
 
     /**
      * Creates new form TelaConsultaUsuario
@@ -33,7 +27,7 @@ public class TelaConsultaUsuario extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        AtualizaLista();
+        AtualizaLista(dao.listar());
         txtPesquisa_nome.requestFocus();
         //jTabela.changeSelection(jTabela.getColumnCount() - 2, 0, false, false);
 
@@ -43,6 +37,25 @@ public class TelaConsultaUsuario extends javax.swing.JDialog {
 
         UsuarioDAO DAO = new UsuarioDAO();
         List<Usuarios> listaUsuarios = DAO.listar();
+        //pega o modelo da Tabela e coloca na variavel "model"
+        DefaultTableModel model = (DefaultTableModel) getjTabela().getModel();
+        //insere na tabela o número de linhas que a lista tem
+        model.setRowCount(listaUsuarios.size());
+
+        //laço para inserir os dados dos objetos na Tabela
+        for (int i = 0; i < listaUsuarios.size(); i++) {
+            model.setValueAt(listaUsuarios.get(i).getIdUsuarios(), i, 0);
+            model.setValueAt(listaUsuarios.get(i).getNomeUsuarios(), i, 1);
+            model.setValueAt(listaUsuarios.get(i).getEmailUsuarios(), i, 2);
+            model.setValueAt(listaUsuarios.get(i).getPerfilUsuarios(), i, 3);
+
+            formatarTabela();
+        }
+
+    }
+
+    public void AtualizaLista(List<Usuarios> listaUsuarios) {
+
         //pega o modelo da Tabela e coloca na variavel "model"
         DefaultTableModel model = (DefaultTableModel) getjTabela().getModel();
         //insere na tabela o número de linhas que a lista tem
@@ -78,7 +91,8 @@ public class TelaConsultaUsuario extends javax.swing.JDialog {
 
     public void excluir() {
 
-        if (UsuarioSelecionado == 0) {
+        int linha = getjTabela().getSelectedRow();
+        if (linha == -1) {
             JOptionPane.showMessageDialog(null, "Selecione usuário na tabela!");
         } else {
 
@@ -86,9 +100,10 @@ public class TelaConsultaUsuario extends javax.swing.JDialog {
 
             if (resposta == JOptionPane.YES_OPTION) {
 
+                int id = (int) (getjTabela().getModel().getValueAt(linha, 0));
                 Usuarios usuarios = new Usuarios();
                 UsuarioDAO dao = new UsuarioDAO();
-                usuarios.setIdUsuarios(UsuarioSelecionado);
+                usuarios.setIdUsuarios(id);
                 dao.deletar(usuarios);
                 AtualizaLista();
 
@@ -97,55 +112,28 @@ public class TelaConsultaUsuario extends javax.swing.JDialog {
             }
 
         }
-        UsuarioSelecionado = 0;
-    }
-
-    public void pegarID_do_usuario() {
-
-        int selecionar = getjTabela().getSelectedRow();
-        UsuarioSelecionado = (int) (getjTabela().getModel().getValueAt(selecionar, 0));
     }
 
     public void alterar_Usuario() {
+        Usuarios usu = new Usuarios();
+        UsuarioDAO UsuDao = new UsuarioDAO();
+        int linha = getjTabela().getSelectedRow();
 
-        if (UsuarioSelecionado == 0) {
+        if (linha == -1) {
 
             JOptionPane.showMessageDialog(null, "Selecione usuário na tabela!");
 
         } else {
-
-            TelaUsuario.status = true;
-            TelaUsuario.idAtulizar = UsuarioSelecionado;
-
-            Usuarios Usu = new Usuarios();
-            UsuarioDAO UsuDao = new UsuarioDAO();
-            Usu.setIdUsuarios(UsuarioSelecionado);
-            Usu = UsuDao.detalhe(Usu);
-
-            nome = (Usu.getNomeUsuarios());
-            senha = (Usu.getSenhaUsuarios());
-            email = (Usu.getEmailUsuarios());
-
+            int id = (int) (getjTabela().getModel().getValueAt(linha, 0));
+            //System.out.println("ID: " + id);
+            usu.setIdUsuarios(id);
+            usu = UsuDao.detalhe(usu);
+            //System.out.println("USU.id="+Usu.getIdUsuarios());
             JFrame mainFrame = new JFrame();
-            TelaUsuario tela = new TelaUsuario(mainFrame, true);
+            TelaUsuario tela = new TelaUsuario(mainFrame, true, usu);
             tela.setVisible(true);
             AtualizaLista();
-
         }
-
-    }
-
-    public void pesquisaUser() {
-
-        Usuarios Usu = new Usuarios();
-        UsuarioDAO UsuDao = new UsuarioDAO();
-
-        Usu.setNomeUsuarios(txtPesquisa_nome.getText());
-        UsuDao.pesquisarUsuarios(Usu);
-        jTabela.setModel(UsuarioDAO.setaResultadojTabela(UsuarioDAO.rsST));
-
-        formatarTabela();
-        UsuarioSelecionado = 0;
     }
 
     /**
@@ -170,7 +158,7 @@ public class TelaConsultaUsuario extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(500, 400));
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisar", 0, 0, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
         jLabel1.setText("Nome:");
 
@@ -218,11 +206,6 @@ public class TelaConsultaUsuario extends javax.swing.JDialog {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
-            }
-        });
-        jTabela.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTabelaMouseClicked(evt);
             }
         });
         jTabela.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -322,23 +305,18 @@ public class TelaConsultaUsuario extends javax.swing.JDialog {
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        TelaUsuario.idAtulizar = 0;
         JFrame mainFrame = new JFrame();
-        TelaUsuario tela = new TelaUsuario(mainFrame, true);
+        TelaUsuario tela = new TelaUsuario(mainFrame, true, null);
         tela.setVisible(true);
-        AtualizaLista();
+        AtualizaLista(dao.listar());
     }//GEN-LAST:event_btnNovoActionPerformed
-
-    private void jTabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabelaMouseClicked
-        pegarID_do_usuario();
-    }//GEN-LAST:event_jTabelaMouseClicked
 
     private void jTabelaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTabelaKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTabelaKeyPressed
 
     private void txtPesquisa_nomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisa_nomeKeyReleased
-        pesquisaUser();
+        AtualizaLista(dao.burcarPorNome(txtPesquisa_nome.getText()));
     }//GEN-LAST:event_txtPesquisa_nomeKeyReleased
 
     /**
