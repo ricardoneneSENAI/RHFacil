@@ -42,7 +42,7 @@ public class UsuarioDAO {
 
         try {
             conecta = ConnectionManager.getConnection();
-            String SQL_UPDATE = "update usuarios set nome = ?, senha = ?, email = ?, perfil = ? where idusuarios = ?";
+            String SQL_UPDATE = "update usuarios set nome = ?, senha = ?, email = ?, perfil = ? where idusuario = ?";
 
             sttm = conecta.prepareStatement(SQL_UPDATE);
             sttm.setString(1, usuario.getNomeUsuarios());
@@ -67,7 +67,7 @@ public class UsuarioDAO {
         List<Usuarios> lista = new ArrayList<Usuarios>();
 
         try {
-            String QUERY_DETALHE = "select idusuarios, nome, email, perfil from usuarios order by nome ASC";
+            String QUERY_DETALHE = "select idusuario, nome, email, perfil from usuarios order by nome ASC";
 
             conecta = ConnectionManager.getConnection();
 
@@ -78,7 +78,7 @@ public class UsuarioDAO {
 
             while (rs.next()) {
                 Usuarios usuario = new Usuarios();
-                usuario.setIdUsuarios(rs.getInt("idusuarios"));
+                usuario.setIdUsuarios(rs.getInt("idusuario"));
                 usuario.setNomeUsuarios(rs.getString("nome"));
                 usuario.setEmailUsuarios(rs.getString("email"));
                 usuario.setPerfilUsuarios(rs.getString("perfil"));
@@ -97,7 +97,7 @@ public class UsuarioDAO {
         List<Usuarios> lista = new ArrayList<Usuarios>();
 
         try {
-            String QUERY_DETALHE = "select idusuarios, nome, email, perfil from usuarios where nome LIKE '%' ? '%'";
+            String QUERY_DETALHE = "select idusuario, nome, email, perfil from usuarios where nome LIKE '%' ? '%'";
 
             conecta = ConnectionManager.getConnection();
 
@@ -109,7 +109,7 @@ public class UsuarioDAO {
 
             while (rs.next()) {
                 Usuarios usuario = new Usuarios();
-                usuario.setIdUsuarios(rs.getInt("idusuarios"));
+                usuario.setIdUsuarios(rs.getInt("idusuario"));
                 usuario.setNomeUsuarios(rs.getString("nome"));
                 usuario.setEmailUsuarios(rs.getString("email"));
                 usuario.setPerfilUsuarios(rs.getString("perfil"));
@@ -127,7 +127,7 @@ public class UsuarioDAO {
 
         try {
             conecta = ConnectionManager.getConnection();
-            String QUERY_DELETE = "delete from usuarios where idusuarios = ?";
+            String QUERY_DELETE = "delete from usuarios where idusuario = ?";
 
             sttm = conecta.prepareStatement(QUERY_DELETE);
             sttm.setInt(1, usuarios.getIdUsuarios());
@@ -152,7 +152,7 @@ public class UsuarioDAO {
         try {
             conecta = ConnectionManager.getConnection();
 
-            String QUERY_DETALHE = "SELECT idusuarios, nome, senha, email, perfil from usuarios where idusuarios = ?";
+            String QUERY_DETALHE = "SELECT idusuario, nome, senha, email, perfil from usuarios where idusuario = ?";
 
             sttm = conecta.prepareStatement(QUERY_DETALHE);
             sttm.setInt(1, usuario.getIdUsuarios());
@@ -163,7 +163,7 @@ public class UsuarioDAO {
 
                 retorno = new Usuarios();
 
-                retorno.setIdUsuarios(rs.getInt("idusuarios"));
+                retorno.setIdUsuarios(rs.getInt("idusuario"));
                 retorno.setNomeUsuarios(rs.getString("nome"));
                 retorno.setSenhaUsuarios(rs.getString("senha"));
                 retorno.setEmailUsuarios(rs.getString("email"));
