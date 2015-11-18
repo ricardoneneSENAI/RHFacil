@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package prototipos;
 
 import dao.CandidatoAptoDAO;
 import dao.EmpresaDAO;
 import entity.Empresas;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,19 +25,22 @@ public class TelaCandidatosAptos extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        Teste();
+        setarComboBox();
     }
-    public void Teste (){
-        Empresas e = new Empresas();
-        
-        CandidatoAptoDAO cd =new CandidatoAptoDAO();
-        List<Empresas> listaEmpresas = cd.listar();
-        
-        JOptionPane.showMessageDialog(null, listaEmpresas);
-        
-        cbEmpresaCandidato.setSelectedItem(listaEmpresas);
-        
+
+    public void setarComboBox() {
+
+        CandidatoAptoDAO DAO = new CandidatoAptoDAO();
+        List<Empresas> listaEmpresas = DAO.listar();
+        DefaultComboBoxModel modelCombo = new DefaultComboBoxModel();
+
+        for (int i = 0; i < listaEmpresas.size(); i++) {
+
+            modelCombo.addElement(listaEmpresas.get(i));
+        }
+        cbEmpresaCandidato.setModel(modelCombo);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -225,7 +228,7 @@ public class TelaCandidatosAptos extends javax.swing.JDialog {
 
     private void btnVoltarCandidatoAptoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarCandidatoAptoActionPerformed
         dispose();
-        
+
     }//GEN-LAST:event_btnVoltarCandidatoAptoActionPerformed
 
     private void btnVerCandidatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerCandidatosActionPerformed
@@ -234,12 +237,12 @@ public class TelaCandidatosAptos extends javax.swing.JDialog {
 
     private void cbEmpresaCandidatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbEmpresaCandidatoActionPerformed
         Empresas e = new Empresas();
-        
-        CandidatoAptoDAO cd =new CandidatoAptoDAO();
+
+        CandidatoAptoDAO cd = new CandidatoAptoDAO();
         List<Empresas> listaEmpresas = cd.listar();
-        
+
         cbEmpresaCandidato.setSelectedItem(listaEmpresas);
-        
+
     }//GEN-LAST:event_cbEmpresaCandidatoActionPerformed
 
     /**

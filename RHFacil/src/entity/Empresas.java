@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entity;
 
+public class Empresas {
 
-    public class Empresas {
     private Integer idEmpresas;
     private String nome_fantasia;
     private String razao_social;
@@ -144,6 +143,9 @@ package entity;
         this.data_fim = data_fim;
     }
 
-    
-   
+    public String toString() {
+
+        return nome_fantasia;
     }
+
+}
