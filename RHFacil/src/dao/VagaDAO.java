@@ -130,6 +130,7 @@ public class VagaDAO {
 
                 lista.add(empresa);
             }
+            sttm.close();
             conn.close();
 
         } catch (Exception ex) {
