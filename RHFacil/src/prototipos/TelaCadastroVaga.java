@@ -7,16 +7,7 @@ package prototipos;
 
 import dao.VagaDAO;
 import entity.Vaga;
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JFormattedTextField;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
+
 
 /**
  *
@@ -671,135 +662,7 @@ public class TelaCadastroVaga extends javax.swing.JDialog {
             }
         });
     }
-
-    public JButton getBtnAdicionarBeneficios() {
-        return btnAdicionarBeneficios;
-    }
-
-    public JButton getBtnAdicionarCompetencias() {
-        return btnAdicionarCompetencias;
-    }
-
-    public ButtonGroup getBtnGrpCnh() {
-        return btnGrpCnh;
-    }
-
-    public ButtonGroup getBtnGrpPcd() {
-        return btnGrpPcd;
-    }
-
-    public ButtonGroup getBtnGrpTemporaria() {
-        return btnGrpTemporaria;
-    }
-
-    public ButtonGroup getBtnGrpViagem() {
-        return btnGrpViagem;
-    }
-
-    public JComboBox getCbEmpresa() {
-        return cbEmpresa;
-    }
-
-    public JCheckBox getCkbA() {
-        return ckbA;
-    }
-
-    public JCheckBox getCkbAuditiva() {
-        return ckbAuditiva;
-    }
-
-    public JCheckBox getCkbFisica() {
-        return ckbFisica;
-    }
-
-    public JCheckBox getCkbMental() {
-        return ckbMental;
-    }
-
-    public JCheckBox getCkbVisual() {
-        return ckbVisual;
-    }
-
-    public JLabel getLbCargoDoContato() {
-        return lbCargoDoContato;
-    }
-
-    public JLabel getLbContato() {
-        return lbContato;
-    }
-
-    public JLabel getLbTelefone() {
-        return lbTelefone;
-    }
-
-    public JLabel getLbTelefone2() {
-        return lbTelefone2;
-    }
-
-    public JList getListBeneficios() {
-        return listBeneficios;
-    }
-
-    public JList getListCompetencias() {
-        return listCompetencias;
-    }
-
-    public JRadioButton getRbnB() {
-        return rbnB;
-    }
-
-    public JRadioButton getRbnC() {
-        return rbnC;
-    }
-
-    public JRadioButton getRbnD() {
-        return rbnD;
-    }
-
-    public JRadioButton getRbnE() {
-        return rbnE;
-    }
-
-    public JRadioButton getRbnPcdNao() {
-        return rbnPcdNao;
-    }
-
-    public JRadioButton getRbnPcdSim() {
-        return rbnPcdSim;
-    }
-
-    public JRadioButton getRbnTemporariaNao() {
-        return rbnTemporariaNao;
-    }
-
-    public JRadioButton getRbnTemporariaSim() {
-        return rbnTemporariaSim;
-    }
-
-    public JRadioButton getRbnViagemNao() {
-        return rbnViagemNao;
-    }
-
-    public JRadioButton getRbnViagemSim() {
-        return rbnViagemSim;
-    }
-
-    public JTextField getTxtCargaHoraria() {
-        return txtCargaHoraria;
-    }
-
-    public JTextField getTxtCargo() {
-        return txtCargo;
-    }
-
-    public JTextField getTxtFuncao() {
-        return txtFuncao;
-    }
-
-    public JFormattedTextField getTxtSalario() {
-        return txtSalario;
-    }
-
+   
     private void salvar() {
         Vaga vaga = new Vaga();
         vaga.setTemporaria(isVagaTemporaria());

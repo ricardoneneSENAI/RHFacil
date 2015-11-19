@@ -112,32 +112,29 @@ public class VagaDAO {
         return retorno;
     }
     
-    public List<Vaga> listar() {
-        List<Vaga> lista = new ArrayList<Vaga>();
-        try{
-            String querySelect = "Select empresa, cargo, salario, temporaria from vaga";
-            
+    public List<Empresas> listar() {
+
+        List<Empresas> lista = new ArrayList<Empresas>();
+
+        try {
+            String querySelect = "select nome_fantasia from empresas order by nome_fantasia ASC";
+
             conn = ConnectionManager.getConnection();
-            
+
             sttm = conn.prepareStatement(querySelect);
             rs = sttm.executeQuery();
-            
+
             while (rs.next()) {
-                Vaga vaga = new Vaga();
                 Empresas empresa = new Empresas();
                 empresa.setNome_fantasia(rs.getString("nome_fantasia"));
-                vaga.setCargo(rs.getString("cargo"));
-                vaga.setSalario(rs.getFloat("salario"));
-                vaga.setTemporaria(rs.getBoolean("temporaria"));
-                
-                lista.add(vaga);
+
+                lista.add(empresa);
             }
-            
-        }catch (Exception e) {
-            e.printStackTrace();                        
-            JOptionPane.showMessageDialog(null, "Não foi possível listar: "+ e.getMessage()); 
+            conn.close();
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao listar!");
         }
-        
         return lista;
     }
     
