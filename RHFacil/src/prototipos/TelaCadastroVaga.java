@@ -99,6 +99,11 @@ public class TelaCadastroVaga extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         cbEmpresa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "" }));
+        cbEmpresa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbEmpresaActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Empresa:");
 
@@ -214,7 +219,7 @@ public class TelaCadastroVaga extends javax.swing.JDialog {
         rbnViagemNao.setSelected(true);
         rbnViagemNao.setText("NÃO");
 
-        jPanel5.setBorder(new javax.swing.border.SoftBevelBorder(0));
+        jPanel5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         ckbFisica.setText("Física");
         ckbFisica.setEnabled(false);
@@ -260,7 +265,7 @@ public class TelaCadastroVaga extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jPanel6.setBorder(new javax.swing.border.SoftBevelBorder(0));
+        jPanel6.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel10.setText("CNH:");
 
@@ -620,6 +625,10 @@ public class TelaCadastroVaga extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         salvar();        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void cbEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbEmpresaActionPerformed
+        
+    }//GEN-LAST:event_cbEmpresaActionPerformed
 
     /**
      * @param args the command line arguments
