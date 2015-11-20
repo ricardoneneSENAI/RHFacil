@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  * @author Programação
  */
 public class TelaEmpresa extends javax.swing.JDialog {
-EmpresaDAO daoEmpresa = new EmpresaDAO();
+    EmpresaDAO daoEmpresa = new EmpresaDAO();
     /**
      * Creates new form TelaEmpresa
      */
@@ -464,7 +464,7 @@ EmpresaDAO daoEmpresa = new EmpresaDAO();
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(138, 138, 138)
+                        .addGap(132, 132, 132)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnVoltar)
                             .addComponent(btnSalvar)))
@@ -493,7 +493,7 @@ EmpresaDAO daoEmpresa = new EmpresaDAO();
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         Empresas e = new Empresas();
-        e.setNome_fantasia(txt_nomeFantasia.getText());
+       // e.setNome_fantasia(txt_nomeFantasia.getText());
         e.setRazao_social(txt_razaoSocial.getText());
         e.setCnpj(txt_cnpj.getText());
         e.setLogradouro(txt_Logradouro.getText());

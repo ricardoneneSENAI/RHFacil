@@ -26,8 +26,8 @@ public class EmpresaDAO {
             if (empresas.getIdEmpresas()== null) {
                 String query = "insert into empresas "
                         + "(nome_fantasia, razao_social, cnpj, inscricao_estadual, logradouro, "
-                        + "numero, complemento, cep, bairro, uf, cidade, contrato, data_inicio, data_fim) values"
-                        + " (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        + "numero, complemento, cep, bairro, uf, cidade, data_inicio, data_fim) values"
+                        + " (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 PreparedStatement sttm = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
               //  sttm.setInt(1, empresas.getIdEmpresas());
                 sttm.setString(1, empresas.getNome_fantasia());
@@ -41,9 +41,9 @@ public class EmpresaDAO {
                 sttm.setString(9, empresas.getBairro());
                 sttm.setString(10, empresas.getUf());
                 sttm.setString(11, empresas.getCidade());
-                sttm.setInt(12, empresas.getContrato().getId());
-                sttm.setString(13, empresas.getData_inicio());
-                sttm.setString(14, empresas.getData_fim());
+                //sttm.setInt(12, empresas.getContrato().getId());
+                sttm.setString(12, empresas.getData_inicio());
+                sttm.setString(13, empresas.getData_fim());
                 sttm.executeUpdate();
                 ResultSet rs = sttm.getGeneratedKeys();
                 if (rs.next()) {
