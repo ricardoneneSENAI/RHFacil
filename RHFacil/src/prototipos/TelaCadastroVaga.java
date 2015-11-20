@@ -34,9 +34,10 @@ public class TelaCadastroVaga extends javax.swing.JDialog {
     public TelaCadastroVaga(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setLocationRelativeTo(null);
-        //setVisible(true); NÃO PRECISA DESTE "SETVISIBLE", PORQUE NA ESTANCIA DA OUTRA CLASSE JÁ ESTA DEFINIDO!
         SetarComboBoxEmpresa();
+        setLocationRelativeTo(null);
+        setVisible(true);
+        
     }
 
     public void isEnable(boolean a) {
@@ -641,6 +642,7 @@ public class TelaCadastroVaga extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void cbEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbEmpresaActionPerformed
+        
     }//GEN-LAST:event_cbEmpresaActionPerformed
 
     /**
