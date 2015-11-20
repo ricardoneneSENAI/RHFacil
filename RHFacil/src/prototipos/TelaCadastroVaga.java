@@ -5,6 +5,7 @@
  */
 package prototipos;
 
+import dao.CandidatoAptoDAO;
 import dao.ConnectionManager;
 import dao.VagaDAO;
 import entity.Empresas;
@@ -13,14 +14,16 @@ import entity.Vaga;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-
 
 /**
  *
  * @author marcelo_teodoro
  */
 public class TelaCadastroVaga extends javax.swing.JDialog {
+
     Connection conn = null;
     PreparedStatement sttm = null;
     ResultSet rs = null;
@@ -32,7 +35,8 @@ public class TelaCadastroVaga extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        setVisible(true);
+        //setVisible(true); NÃO PRECISA DESTE "SETVISIBLE", PORQUE NA ESTANCIA DA OUTRA CLASSE JÁ ESTA DEFINIDO!
+        SetarComboBox();
     }
 
     public void isEnable(boolean a) {
@@ -633,11 +637,11 @@ public class TelaCadastroVaga extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        salvar();        
+        salvar();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void cbEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbEmpresaActionPerformed
-        comboBoxEmpresa();
+        //SetarComboBox();
     }//GEN-LAST:event_cbEmpresaActionPerformed
 
     /**
@@ -681,7 +685,7 @@ public class TelaCadastroVaga extends javax.swing.JDialog {
             }
         });
     }
-   
+
     private void salvar() {
         Vaga vaga = new Vaga();
         vaga.setTemporaria(isVagaTemporaria());
@@ -716,7 +720,7 @@ public class TelaCadastroVaga extends javax.swing.JDialog {
         if (btnGrpPcd.equals("SIM")) {
             return true;
         }
-        return false;        
+        return false;
     }
 
     private String verificaCNH() {
@@ -732,33 +736,47 @@ public class TelaCadastroVaga extends javax.swing.JDialog {
             textoCNH = textoCNH + "C";
         } else if (rbnD.isSelected()) {
             textoCNH = textoCNH + "D";
-        } else if(rbnE.isSelected()){
+        } else if (rbnE.isSelected()) {
             textoCNH = textoCNH + "E";
         }
 
         return textoCNH;
     }
-    
-    private void comboBoxEmpresa(){
-        try{
-            String querySelect = "select nome_fantasia from empresas order by nome_fantasia ASC";
-            
-            conn = ConnectionManager.getConnection();
-            
-            sttm = conn.prepareStatement(querySelect);
-            
-            rs = sttm.executeQuery();
-            
-            while(rs.next()){
-                Empresas empresa = new Empresas();
-                empresa.setNome_fantasia(rs.getString("nome_fantasia"));
-                cbEmpresa.addItem(empresa);
-            }
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
+
+    public void SetarComboBox() {
+
+        VagaDAO DAO = new VagaDAO();
+        List<Empresas> listaEmpresas = DAO.listar();
+        DefaultComboBoxModel modelCombo = new DefaultComboBoxModel();
+
+        for (int i = 0; i < listaEmpresas.size(); i++) {
+
+            modelCombo.addElement(listaEmpresas.get(i));
         }
+        cbEmpresa.setModel(modelCombo);
     }
-    
+
+    /*
+     private void comboBoxEmpresa(){
+     try{
+     String querySelect = "select nome_fantasia from empresas order by nome_fantasia ASC";
+            
+     conn = ConnectionManager.getConnection();
+            
+     sttm = conn.prepareStatement(querySelect);
+            
+     rs = sttm.executeQuery();
+            
+     while(rs.next()){
+     Empresas empresa = new Empresas();
+     empresa.setNome_fantasia(rs.getString("nome_fantasia"));
+     cbEmpresa.addItem(empresa);
+     }
+     }catch(Exception e){
+     JOptionPane.showMessageDialog(null, e);
+     }
+     }
+     */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionarBeneficios;
     private javax.swing.JButton btnAdicionarCompetencias;
