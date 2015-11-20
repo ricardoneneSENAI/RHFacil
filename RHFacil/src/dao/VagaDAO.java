@@ -136,4 +136,30 @@ public class VagaDAO {
         return lista;
     }
     
+    public List<Vaga> listarTelaPesquisarVaga() {
+
+        List<Vaga> lista = new ArrayList<Vaga>();
+
+        try {
+            String querySelect = "select cargo, salario, temporaria from empresas order by nome_fantasia ASC";
+
+            conn = ConnectionManager.getConnection();
+
+            sttm = conn.prepareStatement(querySelect);
+            rs = sttm.executeQuery();
+
+            while (rs.next()) {
+                Vaga vaga = new Vaga();
+                vaga.setCargo(rs.getString("cargo"));
+                vaga.setSalario(rs.getFloat("salario"));
+                vaga.setTemporaria(rs.getBoolean("temporaria"));
+                
+                lista.add(vaga);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao listar: " + e.getMessage());
+        }
+        return lista;
+    }
+    
 }
