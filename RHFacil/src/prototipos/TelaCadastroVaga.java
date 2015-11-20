@@ -36,7 +36,7 @@ public class TelaCadastroVaga extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         //setVisible(true); NÃO PRECISA DESTE "SETVISIBLE", PORQUE NA ESTANCIA DA OUTRA CLASSE JÁ ESTA DEFINIDO!
-        SetarComboBox();
+        SetarComboBoxEmpresa();
     }
 
     public void isEnable(boolean a) {
@@ -641,7 +641,6 @@ public class TelaCadastroVaga extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void cbEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbEmpresaActionPerformed
-        //SetarComboBox();
     }//GEN-LAST:event_cbEmpresaActionPerformed
 
     /**
@@ -743,10 +742,10 @@ public class TelaCadastroVaga extends javax.swing.JDialog {
         return textoCNH;
     }
 
-    public void SetarComboBox() {
+    public void SetarComboBoxEmpresa() {
 
-        VagaDAO DAO = new VagaDAO();
-        List<Empresas> listaEmpresas = DAO.listar();
+        VagaDAO vd = new VagaDAO();
+        List<Empresas> listaEmpresas = vd.listar();
         DefaultComboBoxModel modelCombo = new DefaultComboBoxModel();
 
         for (int i = 0; i < listaEmpresas.size(); i++) {
@@ -756,27 +755,6 @@ public class TelaCadastroVaga extends javax.swing.JDialog {
         cbEmpresa.setModel(modelCombo);
     }
 
-    /*
-     private void comboBoxEmpresa(){
-     try{
-     String querySelect = "select nome_fantasia from empresas order by nome_fantasia ASC";
-            
-     conn = ConnectionManager.getConnection();
-            
-     sttm = conn.prepareStatement(querySelect);
-            
-     rs = sttm.executeQuery();
-            
-     while(rs.next()){
-     Empresas empresa = new Empresas();
-     empresa.setNome_fantasia(rs.getString("nome_fantasia"));
-     cbEmpresa.addItem(empresa);
-     }
-     }catch(Exception e){
-     JOptionPane.showMessageDialog(null, e);
-     }
-     }
-     */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionarBeneficios;
     private javax.swing.JButton btnAdicionarCompetencias;
