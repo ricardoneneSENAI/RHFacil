@@ -94,5 +94,11 @@ public class Vaga {
         this.cnh = cnh;
     }
     
+    public String toString() {
+
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append(this.cargo);
+        return stringBuffer.toString();
+    }
     
 }

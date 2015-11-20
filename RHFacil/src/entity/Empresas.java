@@ -5,6 +5,10 @@
  */
 package entity;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
+
 public class Empresas {
 
     private Integer idEmpresas;
@@ -143,9 +147,13 @@ public class Empresas {
         this.data_fim = data_fim;
     }
 
+    @Override
     public String toString() {
-
-        return nome_fantasia;
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append(this.idEmpresas);
+        stringBuffer.append(this.nome_fantasia);
+                
+        return stringBuffer.toString();
     }
 
 }

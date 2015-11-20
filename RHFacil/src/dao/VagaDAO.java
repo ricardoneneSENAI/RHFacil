@@ -144,7 +144,7 @@ public class VagaDAO {
         List<Vaga> lista = new ArrayList<Vaga>();
 
         try {
-            String querySelect = "select cargo, salario, temporaria from empresas order by nome_fantasia ASC";
+            String querySelect = "select cargo, salario, temporaria from vagas order by cargo ASC";
 
             conn = ConnectionManager.getConnection();
 
