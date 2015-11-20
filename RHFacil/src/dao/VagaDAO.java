@@ -112,7 +112,7 @@ public class VagaDAO {
         return retorno;
     }
     
-    public List<Empresas> listar() {
+    public List<Empresas> listarEmpresa() {
 
         List<Empresas> lista = new ArrayList<Empresas>();
 

@@ -747,7 +747,7 @@ public class TelaCadastroVaga extends javax.swing.JDialog {
     public void SetarComboBoxEmpresa() {
 
         VagaDAO vd = new VagaDAO();
-        List<Empresas> listaEmpresas = vd.listar();
+        List<Empresas> listaEmpresas = vd.listarEmpresa();
         DefaultComboBoxModel modelCombo = new DefaultComboBoxModel();
 
         for (int i = 0; i < listaEmpresas.size(); i++) {
