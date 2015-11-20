@@ -5,8 +5,15 @@
  */
 package prototipos;
 
+import dao.ConnectionManager;
 import dao.VagaDAO;
+import entity.Empresas;
+
 import entity.Vaga;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -14,6 +21,9 @@ import entity.Vaga;
  * @author marcelo_teodoro
  */
 public class TelaCadastroVaga extends javax.swing.JDialog {
+    Connection conn = null;
+    PreparedStatement sttm = null;
+    ResultSet rs = null;
 
     /**
      * Creates new form TelaVagaCadastro
@@ -98,7 +108,7 @@ public class TelaCadastroVaga extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        cbEmpresa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "" }));
+        cbEmpresa.setToolTipText("");
         cbEmpresa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbEmpresaActionPerformed(evt);
@@ -627,7 +637,7 @@ public class TelaCadastroVaga extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void cbEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbEmpresaActionPerformed
-        
+        comboBoxEmpresa();
     }//GEN-LAST:event_cbEmpresaActionPerformed
 
     /**
@@ -728,8 +738,27 @@ public class TelaCadastroVaga extends javax.swing.JDialog {
 
         return textoCNH;
     }
-
-
+    
+    private void comboBoxEmpresa(){
+        try{
+            String querySelect = "select nome_fantasia from empresas order by nome_fantasia ASC";
+            
+            conn = ConnectionManager.getConnection();
+            
+            sttm = conn.prepareStatement(querySelect);
+            
+            rs = sttm.executeQuery();
+            
+            while(rs.next()){
+                Empresas empresa = new Empresas();
+                empresa.setNome_fantasia(rs.getString("nome_fantasia"));
+                cbEmpresa.addItem(empresa);
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionarBeneficios;
     private javax.swing.JButton btnAdicionarCompetencias;
