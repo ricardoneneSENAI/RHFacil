@@ -130,11 +130,8 @@ public class VagaDAO {
 
                 lista.add(empresa);
             }
-            sttm.close();
-            conn.close();
-
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao listar!");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao listar: " + e.getMessage());
         }
         return lista;
     }
