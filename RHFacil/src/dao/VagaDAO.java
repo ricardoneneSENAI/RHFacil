@@ -10,6 +10,7 @@ import entity.Vaga;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import prototipos.TelaCadastroVaga;
 
 public class VagaDAO {
     
@@ -34,6 +35,7 @@ public class VagaDAO {
     
     public Vaga insert(Vaga vaga){
         Empresas empresa = new Empresas();
+        TelaCadastroVaga tela = new TelaCadastroVaga(null, true);
         
         conn = ConnectionManager.getConnection();
         try{            
@@ -50,7 +52,7 @@ public class VagaDAO {
             sttm.setBoolean(6, vaga.isDisponibilidadeViagem());
             sttm.setBoolean(7, vaga.isVagaPcd());
             sttm.setString(8, vaga.getCnh());
-            sttm.setInt(9, 1);
+            sttm.setInt(9, Integer.parseInt(tela.getCbEmpresa().getSelectedItem().toString()));
             sttm.executeUpdate();
             ResultSet rs = sttm.getGeneratedKeys();
             if (rs.next()) {
@@ -117,7 +119,7 @@ public class VagaDAO {
         List<Empresas> lista = new ArrayList<Empresas>();
 
         try {
-            String querySelect = "select nome_fantasia from empresas order by nome_fantasia ASC";
+            String querySelect = "select idEmpresas, nome_fantasia from empresas";
 
             conn = ConnectionManager.getConnection();
 
@@ -126,6 +128,7 @@ public class VagaDAO {
 
             while (rs.next()) {
                 Empresas empresa = new Empresas();
+                empresa.setIdEmpresas(rs.getInt("idEmpresas"));
                 empresa.setNome_fantasia(rs.getString("nome_fantasia"));
 
                 lista.add(empresa);
